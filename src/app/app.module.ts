@@ -9,12 +9,12 @@ import { ForestGreenTableComponent } from './components/forest-green-table/fores
 @NgModule({
   declarations: [
     AppComponent,
-    ForestGreenTableComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ForestGreenTableComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
