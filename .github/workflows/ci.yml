@@ -26,7 +26,7 @@ jobs:
         run: npm install
 
       - name: Build Angular app
-        run: ng build --production --base-href="/angular-sandbox/"
+        run: ng build --configuration production --base-href="/angular-sandbox/"
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@4.1.0
