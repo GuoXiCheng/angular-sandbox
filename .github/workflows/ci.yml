@@ -29,7 +29,7 @@ jobs:
         run: ng build --configuration production --base-href="/angular-sandbox"
       
       - name: Update dist
-        run: echo $(date) >> dist/README.md
+        run: echo "$(date) $(date +%Z)" >> README.md
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@4.1.0
