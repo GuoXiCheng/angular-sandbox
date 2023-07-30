@@ -26,13 +26,10 @@ jobs:
         run: npm install
 
       - name: Build Angular app
-        run: ng build --configuration production --base-href="/angular-sandbox"
-      
-      - name: Update dist
-        run: echo "$(date) $(date +%Z)" >> README.md
+        run: ng build --configuration production --base-href="/angular-sandbox/"
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@4.1.0
         with:
           branch: gh-pages
-          folder: dist
+          folder: dist/angular-sandbox
