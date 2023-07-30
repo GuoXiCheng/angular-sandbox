@@ -1,6 +1,21 @@
-<div style="padding: 10rem;background-color: #f0f0f0;">
-  <app-forest-green-table
-    [columnHeader]="columnHeader"
-    [data]="ELEMENT_DATA"
-  ></app-forest-green-table>
-</div>
+
+
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer class="example-sidenav" mode="side">
+    <div style="width: 15rem;"></div>
+  </mat-drawer>
+
+  <div class="example-sidenav-content">
+    <button type="button" mat-button (click)="drawer.toggle()">
+      Toggle sidenav
+    </button>
+
+    <div style="background-color: #f0f0f0;">
+      <app-forest-green-table
+        [columnHeader]="columnHeader"
+        [data]="ELEMENT_DATA"
+      ></app-forest-green-table>
+    </div>
+  </div>
+
+</mat-drawer-container>
