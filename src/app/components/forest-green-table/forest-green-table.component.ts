@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, Input, ViewChild } from '@angular/core';
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
-import {MatTableDataSource, MatTableDataSourcePaginator, MatTableModule} from '@angular/material/table';
+import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 
 @Component({
   selector: 'app-forest-green-table',
@@ -11,12 +11,9 @@ import {MatTableDataSource, MatTableDataSourcePaginator, MatTableModule} from '@
   imports: [MatTableModule, MatPaginatorModule, CommonModule],
 })
 export class ForestGreenTableComponent<T> implements AfterViewInit {
-  @Input() columnHeader: Array<{key: string, value: string}> = []
-
   @Input() data: Array<T> = [];
 
-  dataSource: MatTableDataSource<T, MatTableDataSourcePaginator> = new MatTableDataSource<T>(this.data);
-  displayedColumns: string[] = [];
+  @Input() columns: Array<{columnDef: string, header: string, cell: (element: T) => string}> = [];
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
@@ -24,6 +21,9 @@ export class ForestGreenTableComponent<T> implements AfterViewInit {
   ngAfterViewInit() {
     this.dataSource = new MatTableDataSource<T>(this.data);
     this.dataSource.paginator = this.paginator;
-    this.displayedColumns = this.columnHeader.map(item=>(item.key));
+    this.displayedColumns = this.columns.map(c => c.columnDef);
   }
+
+  dataSource = new MatTableDataSource<T>(this.data);;
+  displayedColumns = this.columns.map(c => c.columnDef);
 }
