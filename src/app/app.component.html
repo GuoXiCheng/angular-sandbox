@@ -5,16 +5,17 @@
     <div style="width: 15rem;"></div>
   </mat-drawer>
 
-  <div class="example-sidenav-content">
+  <div class="example-sidenav-content" style="width: 50rem;">
     <button type="button" mat-button (click)="drawer.toggle()">
       Toggle SideNav
     </button>
 
     <div style="background-color: #f0f0f0;">
       <app-forest-green-table
-        [columnHeader]="columnHeader"
-        [data]="ELEMENT_DATA"
-      ></app-forest-green-table>
+        [columns]="columns"
+        [data]="elementData"
+      >
+    </app-forest-green-table>
     </div>
   </div>
 

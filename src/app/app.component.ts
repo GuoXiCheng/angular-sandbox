@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angular-sandbox';
-  ELEMENT_DATA: PeriodicElement[] = [
+  elementData: PeriodicElement[] = [
     {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
     {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
     {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
@@ -30,19 +30,28 @@ export class AppComponent {
     {position: 20, name: 'Calcium', weight: 40.078, symbol: 'Ca'},
   ];
 
-  columnHeader = [{
-    key: 'position',
-    value: 'No.'
-  }, {
-    key: 'name',
-    value: 'Name'
-  }, {
-    key: 'weight',
-    value: 'Weight'
-  }, {
-    key: 'symbol',
-    value: 'Symbol'
-  }]
+  columns = [
+    {
+      columnDef: 'position',
+      header: '编号',
+      cell: (element: PeriodicElement) => `${element.position}`,
+    },
+    {
+      columnDef: 'name',
+      header: 'Name',
+      cell: (element: PeriodicElement) => `${element.name}`,
+    },
+    {
+      columnDef: 'weight',
+      header: 'Weight',
+      cell: (element: PeriodicElement) => `${element.weight}`,
+    },
+    {
+      columnDef: 'symbol',
+      header: 'Symbol',
+      cell: (element: PeriodicElement) => `${element.symbol}`,
+    }
+  ];
 }
 export interface PeriodicElement {
   name: string;
