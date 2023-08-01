@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ForestGreenDialogComponent } from './components/forest-green-dialog/forest-green-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-root',
@@ -6,6 +8,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  constructor(public dialog: MatDialog) {
+
+  }
+
   ngOnInit(): void {
     setTimeout(()=>{
       this.elementData = [
@@ -57,6 +63,15 @@ export class AppComponent implements OnInit {
       cell: (element: PeriodicElement) => `${element.symbol}`,
     }
   ];
+
+  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    this.dialog.open(ForestGreenDialogComponent, {
+      data: {title: 'Dialog'},
+      width: '30rem',
+      enterAnimationDuration,
+      exitAnimationDuration,
+    });
+  }
 }
 export interface PeriodicElement {
   name: string;
