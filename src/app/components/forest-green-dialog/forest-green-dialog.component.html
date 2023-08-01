@@ -1,0 +1,23 @@
+<div class="container">
+  <h2>{{ data.title }}</h2>
+  <mat-divider></mat-divider>
+
+  <div mat-dialog-content>
+    This dialog showcases the title, close, content and actions elements.
+  </div>
+
+  <mat-divider></mat-divider>
+  <div mat-dialog-actions style="float: right">
+    <button mat-button mat-dialog-close>
+      取消
+    </button>
+    <button
+      mat-button
+      mat-dialog-close
+      cdkFocusInitial
+      class="confirm-btn"
+    >
+      确认
+    </button>
+  </div>
+</div>

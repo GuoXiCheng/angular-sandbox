@@ -1,0 +1,12 @@
+.container {
+    padding: 1rem;
+}
+
+button {
+    border: 1px solid black
+}
+
+.confirm-btn {
+    background-color: #64b226;
+    color: white;
+}
