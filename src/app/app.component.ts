@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { ForestGreenDialogComponent } from './components/forest-green-dialog/forest-green-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { FormMsg } from './components/input-field-group/input-field-group.component';
@@ -9,7 +9,7 @@ import { FormMsg } from './components/input-field-group/input-field-group.compon
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  constructor(public dialog: MatDialog) {
+  constructor(public dialog: MatDialog, private renderer: Renderer2) {
 
   }
 
@@ -76,6 +76,18 @@ export class AppComponent implements OnInit {
 
   formDataChanged(item: FormMsg) {
     console.log(item);
+  }
+  isDarkTheme: boolean = false;
+  toggleTheme() {
+    this.isDarkTheme = !this.isDarkTheme;
+
+    if (this.isDarkTheme) {
+      this.renderer.removeClass(document.body, 'light-theme');
+      this.renderer.addClass(document.body, 'dark-theme');
+    } else {
+      this.renderer.removeClass(document.body, 'dark-theme');
+      this.renderer.addClass(document.body, 'light-theme');
+    }
   }
 }
 export interface PeriodicElement {
