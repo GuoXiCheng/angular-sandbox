@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ForestGreenTableComponent } from './components/forest-green-table/forest-green-table.component';
 import { ForestGreenDialogComponent } from './components/forest-green-dialog/forest-green-dialog.component';
+import { InputFieldGroupComponent } from './components/input-field-group/input-field-group.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ForestGreenDialogComponent } from './components/forest-green-dialog/for
     MatButtonModule,
 
     ForestGreenTableComponent,
-    ForestGreenDialogComponent
+    ForestGreenDialogComponent,
+    InputFieldGroupComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
