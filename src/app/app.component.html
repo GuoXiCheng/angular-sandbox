@@ -3,6 +3,8 @@
     <div style="width: 15rem;"></div>
   </mat-drawer>
 
+  <app-input-field-group (formDataChanged)="formDataChanged($event)"></app-input-field-group>
+
   <div class="example-sidenav-content" style="width: 50rem;">
     <button type="button" mat-button (click)="drawer.toggle()">
       Toggle SideNav

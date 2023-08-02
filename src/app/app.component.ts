@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ForestGreenDialogComponent } from './components/forest-green-dialog/forest-green-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { FormMsg } from './components/input-field-group/input-field-group.component';
 
 @Component({
   selector: 'app-root',
@@ -71,6 +72,10 @@ export class AppComponent implements OnInit {
       enterAnimationDuration,
       exitAnimationDuration,
     });
+  }
+
+  formDataChanged(item: FormMsg) {
+    console.log(item);
   }
 }
 export interface PeriodicElement {
