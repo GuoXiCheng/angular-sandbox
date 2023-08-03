@@ -10,10 +10,18 @@ import { ForestGreenDialogComponent } from './components/forest-green-dialog/for
 import { InputFieldGroupComponent } from './components/input-field-group/input-field-group.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon';
+import {MatRadioModule} from '@angular/material/radio';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SecondPageComponent } from './pages/second-page/second-page.component';
+import { FirstPageComponent } from './pages/first-page/first-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    FirstPageComponent,
+    SecondPageComponent
   ],
   imports: [
     BrowserModule,
@@ -23,6 +31,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatButtonModule,
     MatInputModule,
     MatFormFieldModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatRadioModule,
+    FormsModule,
+    ReactiveFormsModule,
 
     ForestGreenTableComponent,
     ForestGreenDialogComponent,
