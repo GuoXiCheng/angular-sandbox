@@ -1,0 +1,30 @@
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer class="example-sidenav" mode="side">
+    <div style="width: 15rem;"></div>
+  </mat-drawer>
+
+  <app-input-field-group (formDataChanged)="formDataChanged($event)"></app-input-field-group>
+
+  <div class="example-sidenav-content" style="width: 50rem;">
+
+    <mat-form-field appearance="outline">
+      <mat-label>Favorite food</mat-label>
+      <input matInput placeholder="Ex. Pizza" value="Sushi">
+    </mat-form-field>
+    <button mat-flat-button color="primary" (click)="toggleTheme()">切换主题</button>
+
+    <button type="button" mat-button (click)="drawer.toggle()">
+      Toggle SideNav
+    </button>
+
+    <div style="background-color: #f0f0f0;">
+      <app-forest-green-table [columns]="columns" [data]="elementData">
+      </app-forest-green-table>
+
+      <button mat-raised-button (click)="openDialog('0ms', '0ms')" color="primary">
+        Open Forest Green Dialog
+      </button>
+    </div>
+  </div>
+
+</mat-drawer-container>
