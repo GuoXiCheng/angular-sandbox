@@ -16,7 +16,8 @@ import {MatRadioModule} from '@angular/material/radio';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SecondPageComponent } from './pages/second-page/second-page.component';
 import { FirstPageComponent } from './pages/first-page/first-page.component';
-
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatSnackbarComponent } from './components/mat-snackbar/mat-snackbar.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,10 +37,12 @@ import { FirstPageComponent } from './pages/first-page/first-page.component';
     MatRadioModule,
     FormsModule,
     ReactiveFormsModule,
+    MatSnackBarModule,
 
     ForestGreenTableComponent,
     ForestGreenDialogComponent,
-    InputFieldGroupComponent
+    InputFieldGroupComponent,
+    MatSnackbarComponent
   ],
   providers: [
   ],

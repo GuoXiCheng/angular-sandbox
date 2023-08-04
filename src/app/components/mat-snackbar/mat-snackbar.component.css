@@ -1,0 +1,15 @@
+.custom-snackbar {
+    background-color: white;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0;
+    margin: 0;
+    border-radius: 4px;
+}
+
+/* 全局样式中修改 mat-snack-bar-container 样式 */
+::ng-deep .mat-mdc-snack-bar-container {
+    --mdc-snackbar-container-color: white;
+}
