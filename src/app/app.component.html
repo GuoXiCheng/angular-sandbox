@@ -22,20 +22,17 @@
 
 <mat-sidenav-container style="height: calc(100% - 64px);">
     <mat-sidenav #sidenav [mode]="'side'">
-        <nav>
-            <ul>
-                <li>
-                    <a routerLink="/first" routerLinkActive="active" ariaCurrentWhenActive="page">
-                        First Component
-                    </a>
-                </li>
-                <li>
-                    <a routerLink="/second" routerLinkActive="active" ariaCurrentWhenActive="page">
-                        Second Component
-                    </a>
-                </li>
-            </ul>
-        </nav>
+        <div style="display: flex; flex-direction: column;">
+
+            <a [ngClass]="isDarkTheme ? 'dark-a': 'light-a'" routerLink="/first" routerLinkActive="active" ariaCurrentWhenActive="page">
+                First Component
+            </a>
+
+            <a [ngClass]="isDarkTheme ? 'dark-a': 'light-a'" routerLink="/second" routerLinkActive="active" ariaCurrentWhenActive="page">
+                Second Component
+            </a>
+        </div>
+
     </mat-sidenav>
 
     <mat-sidenav-content>
