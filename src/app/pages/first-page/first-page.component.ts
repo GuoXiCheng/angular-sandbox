@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-first-page',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FirstPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private apiService: ApiService) { }
 
   ngOnInit() {
+  }
+
+  searchResult = '';
+  async clickSearch() {
+    const result = await this.apiService.searchFoodHeat('香蕉');
+    this.searchResult = JSON.stringify(result, null, 2);
   }
 
 }
