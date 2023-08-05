@@ -1,4 +1,4 @@
-a {
+.route-link {
     display: inline-block;
     text-decoration: none;
     height: 2rem;
@@ -9,7 +9,7 @@ a {
     padding: 0 1rem;
 }
 
-a:hover {
+.route-link:hover {
     background-color: #f0f0f0;
 }
 
@@ -23,4 +23,28 @@ a:hover {
 
 .active {
     background-color: #f0f0f0;
+}
+
+.github-link {
+    display: flex;
+    text-decoration: none;
+    color: white;
+    font-size: 1rem;
+    align-items: center;
+    margin-right: 1rem;
+    border-radius: 5%;
+}
+
+.github-link:hover {
+    background-color: rgba(0,0,0,0.4);
+}
+
+.github-link img {
+    display: inline-block;
+    margin: 0 0.25rem;
+}
+
+.github-link span {
+    display: inline-block;
+    margin: 0 0.25rem;
 }

@@ -18,6 +18,7 @@ import { SecondPageComponent } from './pages/second-page/second-page.component';
 import { FirstPageComponent } from './pages/first-page/first-page.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { MatSnackbarComponent } from './components/mat-snackbar/mat-snackbar.component';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,6 +39,7 @@ import { MatSnackbarComponent } from './components/mat-snackbar/mat-snackbar.com
     FormsModule,
     ReactiveFormsModule,
     MatSnackBarModule,
+    HttpClientModule,
 
     ForestGreenTableComponent,
     ForestGreenDialogComponent,

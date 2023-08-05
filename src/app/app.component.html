@@ -3,7 +3,7 @@
         <mat-icon>menu</mat-icon>
     </button>
 
-    <div>
+    <div style="display: flex;align-items: center;">
         <ng-container *ngIf="isDarkTheme; else elseBlock">
             <button mat-icon-button (click)="toggleTheme()">
                 <mat-icon>light_mode</mat-icon>
@@ -15,8 +15,12 @@
                 <mat-icon>dark_mode</mat-icon>
             </button>
         </ng-template>
-    </div>
 
+        <a class="github-link" href="https://github.com/GuoXiCheng/angular-sandbox">
+            <img src="/assets/img/github-icon.svg" />
+            <span>GitHub</span>
+        </a>
+    </div>
 
 </mat-toolbar>
 
@@ -24,11 +28,13 @@
     <mat-sidenav #sidenav [mode]="'side'">
         <div style="display: flex; flex-direction: column;">
 
-            <a [ngClass]="isDarkTheme ? 'dark-a': 'light-a'" routerLink="/first" routerLinkActive="active" ariaCurrentWhenActive="page">
+            <a class="route-link" [ngClass]="isDarkTheme ? 'dark-a': 'light-a'" routerLink="/first" routerLinkActive="active"
+                ariaCurrentWhenActive="page">
                 First Component
             </a>
 
-            <a [ngClass]="isDarkTheme ? 'dark-a': 'light-a'" routerLink="/second" routerLinkActive="active" ariaCurrentWhenActive="page">
+            <a class="route-link" [ngClass]="isDarkTheme ? 'dark-a': 'light-a'" routerLink="/second" routerLinkActive="active"
+                ariaCurrentWhenActive="page">
                 Second Component
             </a>
         </div>
