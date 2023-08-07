@@ -1,17 +1,17 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
-import { NzInputModule } from 'ng-zorro-antd/input';
 
 @Component({
   selector: 'app-notification-rule-dialog',
   templateUrl: './notification-rule-dialog.component.html',
   styleUrls: ['./notification-rule-dialog.component.css'],
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatInputModule, MatSelectModule, MatTableModule, NzInputModule]
+  imports: [CommonModule, MatButtonModule, MatInputModule, MatSelectModule, MatTableModule, MatIconModule]
 })
 export class NotificationRuleDialogComponent implements OnInit {
   matchList = [''];
