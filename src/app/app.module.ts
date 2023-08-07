@@ -19,6 +19,7 @@ import { FirstPageComponent } from './pages/first-page/first-page.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { MatSnackbarComponent } from './components/mat-snackbar/mat-snackbar.component';
 import { HttpClientModule } from '@angular/common/http';
+import { NotificationRuleDialogComponent } from './components/notification-rule-dialog/notification-rule-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,7 +45,8 @@ import { HttpClientModule } from '@angular/common/http';
     ForestGreenTableComponent,
     ForestGreenDialogComponent,
     InputFieldGroupComponent,
-    MatSnackbarComponent
+    MatSnackbarComponent,
+    NotificationRuleDialogComponent
   ],
   providers: [
   ],
