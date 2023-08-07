@@ -1,0 +1,82 @@
+<div style="padding: 1.5rem">
+  <h2>新增通知規則</h2>
+
+  <form style="display: flex; flex-direction: column">
+    <div style="display: flex; flex-direction: column">
+      <mat-label>通知規則名稱</mat-label>
+      <mat-form-field appearance="outline">
+        <input matInput placeholder="請輸入通知規則名稱" />
+      </mat-form-field>
+    </div>
+
+    <div style="display: flex; justify-content: space-between">
+      <mat-label>如果以下條件皆滿足</mat-label>
+      <a (click)="addNewMatch()">+ 添加新條件</a>
+    </div>
+
+    <ng-container *ngFor="let item of matchList; let i = index">
+      <div style="display: flex; flex-wrap: nowrap">
+        <mat-form-field appearance="outline">
+          <mat-select disableRipple>
+            <ng-container *ngFor="let labelName of labelNameList; let i = index">
+              <mat-option value="i">{{labelName}}</mat-option>
+            </ng-container>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-select disableRipple>
+            <mat-option value="=">等于</mat-option>
+            <mat-option value="!=">不等于</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-select disableRipple>
+            <ng-container *ngFor="let labelValue of labelValueList; let i = index">
+              <mat-option value="i">{{labelValue}}</mat-option>
+            </ng-container>
+          </mat-select>
+        </mat-form-field>
+        <ng-container *ngIf="i > 0">
+          <a (click)="clickDelMatch(i)">删除</a>
+        </ng-container>
+      </div>
+    </ng-container>
+
+    <div style="display: flex; justify-content: space-between">
+      <mat-label>然後</mat-label>
+      <a (click)="addNewNotificationMode()">+ 添加通知方式</a>
+    </div>
+
+    <ng-container *ngFor="let item of notificationModeList; let i = index">
+      <mat-form-field appearance="outline">
+        <mat-select>
+          <mat-optgroup
+            *ngFor="let group of pokemonGroups"
+            [label]="group.name"
+          >
+            <mat-option
+              *ngFor="let pokemon of group.pokemon"
+              [value]="pokemon.value"
+            >
+              {{ pokemon.viewValue }}
+            </mat-option>
+          </mat-optgroup>
+        </mat-select>
+      </mat-form-field>
+      <ng-container *ngIf="i > 0">
+        <a (click)="clickDelNotificationMode(i)">删除</a>
+      </ng-container>
+    </ng-container>
+  </form>
+
+  <div style="float: right; margin: 1.5rem 0">
+    <button mat-stroked-button style="margin-right: 0.5rem">取消</button>
+    <button
+      mat-stroked-button
+      style="background-color: #0d759f; color: white"
+      cdkFocusInitial
+    >
+      儲存
+    </button>
+  </div>
+</div>

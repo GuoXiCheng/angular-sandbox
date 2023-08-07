@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { NotificationRuleDialogComponent } from 'src/app/components/notification-rule-dialog/notification-rule-dialog.component';
 
 @Component({
   selector: 'app-second-page',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SecondPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
+    this.openDialog()
   }
 
+  openDialog() {
+    this.dialog.open(NotificationRuleDialogComponent, {
+      data: {title: 'Dialog'},
+      width: '37.5rem',
+    });
+  }
 }
