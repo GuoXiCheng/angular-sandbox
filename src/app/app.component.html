@@ -26,7 +26,7 @@
 
 <mat-sidenav-container style="height: calc(100% - 64px);">
     <mat-sidenav #sidenav [mode]="'side'">
-        <div style="display: flex; flex-direction: column;">
+        <div style="display: flex; flex-direction: column">
 
             <a class="route-link" [ngClass]="isDarkTheme ? 'dark-a': 'light-a'" routerLink="/first" routerLinkActive="active"
                 ariaCurrentWhenActive="page">
@@ -36,6 +36,11 @@
             <a class="route-link" [ngClass]="isDarkTheme ? 'dark-a': 'light-a'" routerLink="/second" routerLinkActive="active"
                 ariaCurrentWhenActive="page">
                 Second Component
+            </a>
+
+            <a class="route-link" [ngClass]="isDarkTheme ? 'dark-a': 'light-a'" routerLink="/third" routerLinkActive="active"
+                ariaCurrentWhenActive="page">
+                Third Component
             </a>
         </div>
 
