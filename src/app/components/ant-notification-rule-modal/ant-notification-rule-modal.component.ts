@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import { distinctUntilChanged } from 'rxjs';
 @Component({
   selector: 'app-ant-notification-rule-modal',
   templateUrl: './ant-notification-rule-modal.component.html',
@@ -14,20 +15,14 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 })
 export class AntNotificationRuleModalComponent implements OnInit {
   @Input() isVisible = false;
-  @Output() isVisibleChange = new EventEmitter<boolean>();
+  @Input() labelNameList: string[] = [];
+  @Input() labelValueList: string[] = [];
 
-  alertmanagerRouteMatchers = [{
-    label_name: '',
-    operater: '',
-    label_value: ''
-  }]
-  alertmanagerRouteMapReceivers = [
-    {
-      selectedValue: 'email|451d1488f98b1cd000082b5b310135f5'
-    }
-  ]
+  @Output() isVisibleChange = new EventEmitter<boolean>();
+  @Output() labelNameChange = new EventEmitter<string>();
 
   parentForm: FormGroup;
+
   get subForms() {
     return this.parentForm.get('subForms') as FormArray;
   }
@@ -45,6 +40,19 @@ export class AntNotificationRuleModalComponent implements OnInit {
     });
     this.addNewMatcher();
     this.addNewReceiver();
+
+    // 监听 labelName 的变化，使用 RxJS 的 valueChanges
+    this.subForms.controls.forEach((subForm, index) => {
+      const labelNameControl = subForm.get('labelName');
+
+      labelNameControl?.valueChanges.pipe(
+        distinctUntilChanged()
+      ).subscribe(newLabelName => {
+        console.log('--')
+        this.handleLabelNameChange(newLabelName, index);
+      });
+    });
+    
   }
 
   ngOnInit() {
@@ -55,25 +63,8 @@ export class AntNotificationRuleModalComponent implements OnInit {
   }
 
   handleCancel(): void {
-    console.log('Button cancel clicked!');
     this.isVisible = false;
-    this.isVisibleChange.emit(false);
   }
-
-  provinceData = ['Zhejiang', 'Jiangsu'];
-  cityData: { [place: string]: string[] } = {
-    Zhejiang: ['Hangzhou', 'Ningbo', 'Wenzhou'],
-    Jiangsu: ['Nanjing', 'Suzhou', 'Zhenjiang']
-  };
-
-  labelNameList = ['a', 'b'];
-  labelValueList = ['c', 'd'];
-
-  provinceChange(value: string): void {
-    // this.selectedCity = this.cityData[value][0];
-  }
-
-
 
   addNewMatcher() {
     const subForm = this.fb.group({
@@ -97,6 +88,13 @@ export class AntNotificationRuleModalComponent implements OnInit {
 
   clickDelReceiverIcon(receiverIndex: number) {
     this.grandForms.removeAt(receiverIndex);
+  }
+
+  handleLabelNameChange(labelName: string, index: number) {
+    console.log('hh')
+    this.labelNameChange.emit(labelName);
+    const labelValueControl = this.subForms.controls[index].get('labelValue');
+    labelValueControl?.setValue('');
   }
 
   receiverOptionGroup = [{

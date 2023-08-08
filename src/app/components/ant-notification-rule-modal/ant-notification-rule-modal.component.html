@@ -1,5 +1,5 @@
-<nz-modal [(nzVisible)]="isVisible" nzTitle="新增通知規則" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()"
-  nzWidth="37.5rem">
+<nz-modal nzOkText="儲存" [(nzVisible)]="isVisible" nzTitle="新增通知規則" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()"
+  [nzMaskClosable]="false" nzWidth="37.5rem">
   <ng-container *nzModalContent>
     <form nz-form [formGroup]="parentForm" (ngSubmit)="handleOk()">
       <nz-form-item>
@@ -18,7 +18,7 @@
       <div formArrayName="subForms">
         <div *ngFor="let subForm of subForms.controls; let subFormItem = index" [formGroupName]="subFormItem"
           class="matcher-container">
-          <nz-select formControlName="labelName" style="flex: 1">
+          <nz-select formControlName="labelName" style="flex: 1" (ngModelChange)="handleLabelNameChange($event, subFormItem)">
             <nz-option *ngFor="let p of labelNameList" [nzValue]="p" [nzLabel]="p"></nz-option>
           </nz-select>
 
