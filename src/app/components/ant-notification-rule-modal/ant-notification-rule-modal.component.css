@@ -1,0 +1,23 @@
+.del-icon {
+    color: red;
+    cursor: pointer;
+    padding: 0 0.5rem;
+}
+
+.matcher-container {
+    display: flex;
+    align-items: center;
+}
+
+.matcher-container nz-select {
+    padding: 0.35rem 0;
+}
+
+.receiver-container {
+    display: flex;
+    align-items: center;
+}
+
+.receiver-container nz-select {
+    padding: 0.35rem 0;
+}

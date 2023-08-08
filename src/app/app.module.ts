@@ -20,11 +20,21 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { MatSnackbarComponent } from './components/mat-snackbar/mat-snackbar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NotificationRuleDialogComponent } from './components/notification-rule-dialog/notification-rule-dialog.component';
+import { NZ_I18N } from 'ng-zorro-antd/i18n';
+import { zh_CN } from 'ng-zorro-antd/i18n';
+import { registerLocaleData } from '@angular/common';
+import zh from '@angular/common/locales/zh';
+import { ThirdPageComponent } from './pages/third-page/third-page.component';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { AntNotificationRuleModalComponent } from './components/ant-notification-rule-modal/ant-notification-rule-modal.component';
+
+registerLocaleData(zh);
 @NgModule({
   declarations: [
     AppComponent,
     FirstPageComponent,
-    SecondPageComponent
+    SecondPageComponent,
+    ThirdPageComponent
   ],
   imports: [
     BrowserModule,
@@ -42,13 +52,18 @@ import { NotificationRuleDialogComponent } from './components/notification-rule-
     MatSnackBarModule,
     HttpClientModule,
 
+    NzButtonModule,
+
     ForestGreenTableComponent,
     ForestGreenDialogComponent,
     InputFieldGroupComponent,
     MatSnackbarComponent,
-    NotificationRuleDialogComponent
+    NotificationRuleDialogComponent,
+    AntNotificationRuleModalComponent
   ],
   providers: [
+  
+    { provide: NZ_I18N, useValue: zh_CN }
   ],
   bootstrap: [AppComponent]
 })

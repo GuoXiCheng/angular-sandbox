@@ -12,7 +12,7 @@ export class SecondPageComponent implements OnInit {
   constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
-    this.openDialog()
+    
   }
 
   openDialog() {
