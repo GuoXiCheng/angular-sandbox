@@ -32,13 +32,19 @@ export class AntNotificationRuleModalComponent implements OnInit {
     return this.parentForm.get('subForms') as FormArray;
   }
 
+  get grandForms() {
+    return this.parentForm.get('grandForms') as FormArray;
+  }
+
 
   constructor(private fb: FormBuilder) { 
     this.parentForm = this.fb.group({
       routeName: [''],
-      subForms: this.fb.array([])
+      subForms: this.fb.array([]),
+      grandForms: this.fb.array([])
     });
     this.addNewMatcher();
+    this.addNewReceiver();
   }
 
   ngOnInit() {
@@ -83,13 +89,14 @@ export class AntNotificationRuleModalComponent implements OnInit {
   }
 
   addNewReceiver() {
-    this.alertmanagerRouteMapReceivers.push({
-      selectedValue: ''
+    const grandForm = this.fb.group({
+      selectedValue: ['']
     });
+    this.grandForms.push(grandForm);
   }
 
   clickDelReceiverIcon(receiverIndex: number) {
-    this.alertmanagerRouteMapReceivers.splice(receiverIndex, 1);
+    this.grandForms.removeAt(receiverIndex);
   }
 
   receiverOptionGroup = [{

@@ -35,29 +35,29 @@
             (click)="clickDelMatcherIcon(subFormItem)"></span>
         </div>
       </div>
-    </form>
 
-    <div class="condition-link-container">
-      <div>然後</div>
-      <a nz-button nzType="link" (click)="addNewReceiver()">+ 添加通知方式</a>
-    </div>
+      <div class="condition-link-container">
+        <div>然後</div>
+        <a nz-button nzType="link" (click)="addNewReceiver()">+ 添加通知方式</a>
+      </div>
 
-    <div *ngFor="
-        let receiver of alertmanagerRouteMapReceivers;
-        let receiverIndex = index
-      " class="receiver-container">
-      <nz-select [(ngModel)]="receiver.selectedValue" nzAllowClear style="width: 100%">
-        <ng-container *ngFor="let group of receiverOptionGroup">
-          <nz-option-group nzLabel="{{ group.groupLabel }}">
-            <ng-container *ngFor="let option of group.groupValue">
-              <nz-option nzValue="{{ option.optionLabel }}" nzLabel="{{ option.optionValue }}"></nz-option>
+      <div formArrayName="grandForms">
+        <div *ngFor="let grandForm of grandForms.controls; let grandFormItem = index" [formGroupName]="grandFormItem"
+          class="receiver-container">
+          <nz-select formControlName="selectedValue" nzAllowClear style="width: 100%">
+            <ng-container *ngFor="let group of receiverOptionGroup">
+              <nz-option-group nzLabel="{{ group.groupLabel }}">
+                <ng-container *ngFor="let option of group.groupValue">
+                  <nz-option nzValue="{{ option.optionLabel }}" nzLabel="{{ option.optionValue }}"></nz-option>
+                </ng-container>
+              </nz-option-group>
             </ng-container>
-          </nz-option-group>
-        </ng-container>
-      </nz-select>
+          </nz-select>
 
-      <span [hidden]="receiverIndex == 0" nz-icon nzType="close" nzTheme="outline" class="del-icon"
-        (click)="clickDelReceiverIcon(receiverIndex)"></span>
-    </div>
+          <span [hidden]="grandFormItem == 0" nz-icon nzType="close" nzTheme="outline" class="del-icon"
+            (click)="clickDelReceiverIcon(grandFormItem)"></span>
+        </div>
+      </div>
+    </form>
   </ng-container>
 </nz-modal>
