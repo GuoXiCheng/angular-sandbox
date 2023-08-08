@@ -3,79 +3,74 @@
 
   <form style="display: flex; flex-direction: column">
     <div style="display: flex; flex-direction: column">
-      <mat-label>通知規則名稱</mat-label>
+      <mat-label style="margin: 12px 0;">通知規則名稱</mat-label>
       <mat-form-field appearance="outline">
         <input matInput placeholder="請輸入通知規則名稱" />
+        <mat-hint matHint=""></mat-hint>
       </mat-form-field>
     </div>
 
-    <div style="display: flex; justify-content: space-between">
+    <div style="display: flex; justify-content: space-between; margin: 12px 0;">
       <mat-label>如果以下條件皆滿足</mat-label>
       <a (click)="addNewMatch()">+ 添加新條件</a>
     </div>
 
     <ng-container *ngFor="let item of matchList; let i = index">
-      <div style="display: flex; flex-wrap: nowrap">
-        <mat-form-field appearance="outline">
-          <mat-select disableRipple>
+      <div style="display: flex; flex-wrap: nowrap;">
+        <mat-form-field appearance="outline" style="flex: 1">
+          <mat-select>
             <ng-container *ngFor="let labelName of labelNameList; let i = index">
               <mat-option value="i">{{labelName}}</mat-option>
             </ng-container>
           </mat-select>
         </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-select disableRipple>
+        <mat-form-field appearance="outline" style="flex: 1; padding: 0 8px;">
+          <mat-select>
             <mat-option value="=">等于</mat-option>
             <mat-option value="!=">不等于</mat-option>
           </mat-select>
         </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-select disableRipple>
+        <mat-form-field appearance="outline" [ngStyle]="{'flex': i==0 ? '2': '1.77'}">
+          <mat-select>
             <ng-container *ngFor="let labelValue of labelValueList; let i = index">
               <mat-option value="i">{{labelValue}}</mat-option>
             </ng-container>
           </mat-select>
         </mat-form-field>
-        <ng-container *ngIf="i > 0">
-          <a (click)="clickDelMatch(i)">删除</a>
-        </ng-container>
+        <div [hidden]="i == 0">
+          <mat-icon style="color: red;position: relative;top: 6px;cursor: pointer;padding-left: 5px;"
+            (click)="clickDelMatch(i)">clear</mat-icon>
+        </div>
       </div>
     </ng-container>
 
-    <div style="display: flex; justify-content: space-between">
+    <div style="display: flex; justify-content: space-between;margin: 12px 0;">
       <mat-label>然後</mat-label>
       <a (click)="addNewNotificationMode()">+ 添加通知方式</a>
     </div>
 
     <ng-container *ngFor="let item of notificationModeList; let i = index">
-      <mat-form-field appearance="outline">
-        <mat-select>
-          <mat-optgroup
-            *ngFor="let group of pokemonGroups"
-            [label]="group.name"
-          >
-            <mat-option
-              *ngFor="let pokemon of group.pokemon"
-              [value]="pokemon.value"
-            >
-              {{ pokemon.viewValue }}
-            </mat-option>
-          </mat-optgroup>
-        </mat-select>
-      </mat-form-field>
-      <ng-container *ngIf="i > 0">
-        <a (click)="clickDelNotificationMode(i)">删除</a>
-      </ng-container>
+      <div style="display: flex;">
+        <mat-form-field appearance="outline" style="flex: 1">
+          <mat-select>
+            <mat-optgroup *ngFor="let group of pokemonGroups" [label]="group.name">
+              <mat-option *ngFor="let pokemon of group.pokemon" [value]="pokemon.value">
+                {{ pokemon.viewValue }}
+              </mat-option>
+            </mat-optgroup>
+          </mat-select>
+        </mat-form-field>
+        <div [hidden]="i==0">
+          <mat-icon style="color: red;position: relative;top: 6px;cursor: pointer;padding-left: 5px;"
+            (click)="clickDelNotificationMode(i)">clear</mat-icon>
+        </div>
+      </div>
     </ng-container>
   </form>
 
   <div style="float: right; margin: 1.5rem 0">
     <button mat-stroked-button style="margin-right: 0.5rem">取消</button>
-    <button
-      mat-stroked-button
-      style="background-color: #0d759f; color: white"
-      cdkFocusInitial
-    >
+    <button mat-stroked-button style="background-color: #0d759f; color: white" cdkFocusInitial>
       儲存
     </button>
   </div>

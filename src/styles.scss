@@ -46,3 +46,14 @@ body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+
+/*设定mat-form-field的样式*/
+.mat-mdc-text-field-wrapper.mdc-text-field--outlined .mat-mdc-form-field-infix {
+    padding-top: 6px !important;
+    padding-bottom: 6px !important;
+}
+
+.mat-mdc-form-field-infix {
+    min-height: 12px !important;
+}
