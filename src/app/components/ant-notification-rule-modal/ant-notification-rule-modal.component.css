@@ -21,3 +21,9 @@
 .receiver-container nz-select {
     padding: 0.35rem 0;
 }
+
+.condition-link-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.35rem 0;
+}

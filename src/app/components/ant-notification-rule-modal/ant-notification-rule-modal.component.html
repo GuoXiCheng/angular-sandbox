@@ -1,117 +1,63 @@
-<nz-modal
-  [(nzVisible)]="isVisible"
-  nzTitle="新增通知規則"
-  (nzOnCancel)="handleCancel()"
-  (nzOnOk)="handleOk()"
-  nzWidth="37.5rem"
->
+<nz-modal [(nzVisible)]="isVisible" nzTitle="新增通知規則" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()"
+  nzWidth="37.5rem">
   <ng-container *nzModalContent>
-    <form nz-form>
+    <form nz-form [formGroup]="parentForm" (ngSubmit)="handleOk()">
       <nz-form-item>
         <nz-form-label [nzSpan]="24" nzFor="email">通知規則名稱</nz-form-label>
         <nz-form-control>
-          <input
-            nz-input
-            name="email"
-            type="email"
-            id="email"
-            placeholder="請輸入通知規則名稱"
-            style="width: 100%"
-          />
+          <input nz-input name="email" type="email" id="email" placeholder="請輸入通知規則名稱" formControlName="routeName"
+            style="width: 100%" />
         </nz-form-control>
       </nz-form-item>
+
+      <div class="condition-link-container">
+        <div>如果以下條件皆滿足</div>
+        <a nz-button nzType="link" (click)="addNewMatcher()">+ 添加新條件</a>
+      </div>
+
+      <div formArrayName="subForms">
+        <div *ngFor="let subForm of subForms.controls; let subFormItem = index" [formGroupName]="subFormItem"
+          class="matcher-container">
+          <nz-select formControlName="labelName" style="flex: 1">
+            <nz-option *ngFor="let p of labelNameList" [nzValue]="p" [nzLabel]="p"></nz-option>
+          </nz-select>
+
+          <nz-select formControlName="operator" style="flex: 1; margin: 0 0.5rem">
+            <nz-option nzValue="=" nzLabel="等于"></nz-option>
+            <nz-option nzValue="!=" nzLabel="不等于"></nz-option>
+          </nz-select>
+
+          <nz-select formControlName="labelValue" [ngStyle]="{ flex: subFormItem == 0 ? '2' : '1.8' }">
+            <nz-option *ngFor="let c of labelValueList" [nzValue]="c" [nzLabel]="c"></nz-option>
+          </nz-select>
+
+          <span [hidden]="subFormItem == 0" nz-icon nzType="close" nzTheme="outline" class="del-icon"
+            (click)="clickDelMatcherIcon(subFormItem)"></span>
+        </div>
+      </div>
     </form>
 
-    <div
-      style="display: flex; justify-content: space-between; padding: 0.35rem 0"
-    >
-      <div>如果以下條件皆滿足</div>
-      <a nz-button nzType="link" (click)="addNewMatcher()">+ 添加新條件</a>
-    </div>
-
-    <div
-      *ngFor="
-        let matcher of alertmanagerRouteMatchers;
-        let matcherIndex = index
-      "
-      class="matcher-container"
-    >
-      <nz-select
-        [(ngModel)]="matcher.label_name"
-        style="flex: 1"
-      >
-        <nz-option
-          *ngFor="let p of labelNameList"
-          [nzValue]="p"
-          [nzLabel]="p"
-        ></nz-option>
-      </nz-select>
-
-      <nz-select [(ngModel)]="matcher.operater" style="flex: 1; margin: 0 0.5rem">
-        <nz-option nzValue="=" nzLabel="等于"></nz-option>
-        <nz-option nzValue="!=" nzLabel="不等于"></nz-option>
-      </nz-select>
-
-      <nz-select
-        [(ngModel)]="matcher.label_value"
-        [ngStyle]="{ flex: matcherIndex == 0 ? '2' : '1.8' }"
-      >
-        <nz-option
-          *ngFor="let c of labelValueList"
-          [nzValue]="c"
-          [nzLabel]="c"
-        ></nz-option>
-      </nz-select>
-
-      <span
-        [hidden]="matcherIndex == 0"
-        nz-icon
-        nzType="close"
-        nzTheme="outline"
-        class="del-icon"
-        (click)="clickDelMatcherIcon(matcherIndex)"
-      ></span>
-    </div>
-
-    <div
-      style="display: flex; justify-content: space-between; padding: 0.35rem 0"
-    >
+    <div class="condition-link-container">
       <div>然後</div>
       <a nz-button nzType="link" (click)="addNewReceiver()">+ 添加通知方式</a>
     </div>
 
-    <div
-      *ngFor="
+    <div *ngFor="
         let receiver of alertmanagerRouteMapReceivers;
         let receiverIndex = index
-      "
-      class="receiver-container"
-    >
-      <nz-select
-        [(ngModel)]="receiver.selectedValue"
-        nzAllowClear
-        style="width: 100%"
-      >
+      " class="receiver-container">
+      <nz-select [(ngModel)]="receiver.selectedValue" nzAllowClear style="width: 100%">
         <ng-container *ngFor="let group of receiverOptionGroup">
           <nz-option-group nzLabel="{{ group.groupLabel }}">
             <ng-container *ngFor="let option of group.groupValue">
-              <nz-option
-                nzValue="{{ option.optionLabel }}"
-                nzLabel="{{ option.optionValue }}"
-              ></nz-option>
+              <nz-option nzValue="{{ option.optionLabel }}" nzLabel="{{ option.optionValue }}"></nz-option>
             </ng-container>
           </nz-option-group>
         </ng-container>
       </nz-select>
 
-      <span
-        [hidden]="receiverIndex == 0"
-        nz-icon
-        nzType="close"
-        nzTheme="outline"
-        class="del-icon"
-        (click)="clickDelReceiverIcon(receiverIndex)"
-      ></span>
+      <span [hidden]="receiverIndex == 0" nz-icon nzType="close" nzTheme="outline" class="del-icon"
+        (click)="clickDelReceiverIcon(receiverIndex)"></span>
     </div>
   </ng-container>
 </nz-modal>

@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzFormModule } from 'ng-zorro-antd/form';
-import { FormsModule } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 @Component({
@@ -10,7 +10,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
   templateUrl: './ant-notification-rule-modal.component.html',
   styleUrls: ['./ant-notification-rule-modal.component.css'],
   standalone: true,
-  imports: [CommonModule, NzModalModule, NzFormModule, FormsModule, NzSelectModule, NzIconModule]
+  imports: [CommonModule, NzModalModule, NzFormModule, FormsModule, NzSelectModule, NzIconModule, ReactiveFormsModule]
 })
 export class AntNotificationRuleModalComponent implements OnInit {
   @Input() isVisible = false;
@@ -27,16 +27,25 @@ export class AntNotificationRuleModalComponent implements OnInit {
     }
   ]
 
+  parentForm: FormGroup;
+  get subForms() {
+    return this.parentForm.get('subForms') as FormArray;
+  }
 
-  constructor() { }
+
+  constructor(private fb: FormBuilder) { 
+    this.parentForm = this.fb.group({
+      routeName: [''],
+      subForms: this.fb.array([])
+    });
+    this.addNewMatcher();
+  }
 
   ngOnInit() {
   }
 
   handleOk(): void {
-    console.log('Button ok clicked!');
-    this.isVisible = false;
-    this.isVisibleChange.emit(false);
+    console.log(this.parentForm.value);
   }
 
   handleCancel(): void {
@@ -61,16 +70,16 @@ export class AntNotificationRuleModalComponent implements OnInit {
 
 
   addNewMatcher() {
-    this.alertmanagerRouteMatchers.push({
-      label_name: '',
-      label_value: '',
-      operater: ''
+    const subForm = this.fb.group({
+      labelName: [''],
+      operator: [''],
+      labelValue: ['']
     });
-    console.log(this.alertmanagerRouteMatchers)
+    this.subForms.push(subForm);
   }
 
   clickDelMatcherIcon(matcherIndex: number) {
-    this.alertmanagerRouteMatchers.splice(matcherIndex, 1);
+    this.subForms.removeAt(matcherIndex);
   }
 
   addNewReceiver() {
