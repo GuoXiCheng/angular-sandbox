@@ -42,6 +42,11 @@
                 ariaCurrentWhenActive="page">
                 Third Component
             </a>
+
+            <a class="route-link" [ngClass]="isDarkTheme ? 'dark-a': 'light-a'" routerLink="/fourth" routerLinkActive="active"
+                ariaCurrentWhenActive="page">
+                Fourth Component
+            </a>
         </div>
 
     </mat-sidenav>

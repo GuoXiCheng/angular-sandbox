@@ -1,86 +1,100 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzFormModule } from 'ng-zorro-antd/form';
-import { FormsModule } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import { distinctUntilChanged } from 'rxjs';
 @Component({
   selector: 'app-ant-notification-rule-modal',
   templateUrl: './ant-notification-rule-modal.component.html',
   styleUrls: ['./ant-notification-rule-modal.component.css'],
   standalone: true,
-  imports: [CommonModule, NzModalModule, NzFormModule, FormsModule, NzSelectModule, NzIconModule]
+  imports: [CommonModule, NzModalModule, NzFormModule, FormsModule, NzSelectModule, NzIconModule, ReactiveFormsModule]
 })
 export class AntNotificationRuleModalComponent implements OnInit {
   @Input() isVisible = false;
+  @Input() labelNameList: string[] = [];
+  @Input() labelValueList: string[] = [];
+
   @Output() isVisibleChange = new EventEmitter<boolean>();
+  @Output() labelNameChange = new EventEmitter<string>();
 
-  alertmanagerRouteMatchers = [{
-    label_name: '',
-    operater: '',
-    label_value: ''
-  }]
-  alertmanagerRouteMapReceivers = [
-    {
-      selectedValue: 'email|451d1488f98b1cd000082b5b310135f5'
-    }
-  ]
+  parentForm: FormGroup;
+
+  get subForms() {
+    return this.parentForm.get('subForms') as FormArray;
+  }
+
+  get grandForms() {
+    return this.parentForm.get('grandForms') as FormArray;
+  }
 
 
-  constructor() { }
+  constructor(private fb: FormBuilder) { 
+    this.parentForm = this.fb.group({
+      routeName: [''],
+      subForms: this.fb.array([]),
+      grandForms: this.fb.array([])
+    });
+    this.addNewMatcher();
+    this.addNewReceiver();
+
+    // 监听 labelName 的变化，使用 RxJS 的 valueChanges
+    this.subForms.controls.forEach((subForm, index) => {
+      const labelNameControl = subForm.get('labelName');
+
+      labelNameControl?.valueChanges.pipe(
+        distinctUntilChanged()
+      ).subscribe(newLabelName => {
+        console.log('--')
+        this.handleLabelNameChange(newLabelName, index);
+      });
+    });
+    
+  }
 
   ngOnInit() {
   }
 
   handleOk(): void {
-    console.log('Button ok clicked!');
-    this.isVisible = false;
-    this.isVisibleChange.emit(false);
+    console.log(this.parentForm.value);
   }
 
   handleCancel(): void {
-    console.log('Button cancel clicked!');
     this.isVisible = false;
-    this.isVisibleChange.emit(false);
   }
-
-  provinceData = ['Zhejiang', 'Jiangsu'];
-  cityData: { [place: string]: string[] } = {
-    Zhejiang: ['Hangzhou', 'Ningbo', 'Wenzhou'],
-    Jiangsu: ['Nanjing', 'Suzhou', 'Zhenjiang']
-  };
-
-  labelNameList = ['a', 'b'];
-  labelValueList = ['c', 'd'];
-
-  provinceChange(value: string): void {
-    // this.selectedCity = this.cityData[value][0];
-  }
-
-
 
   addNewMatcher() {
-    this.alertmanagerRouteMatchers.push({
-      label_name: '',
-      label_value: '',
-      operater: ''
+    const subForm = this.fb.group({
+      labelName: [''],
+      operator: [''],
+      labelValue: ['']
     });
-    console.log(this.alertmanagerRouteMatchers)
+    this.subForms.push(subForm);
   }
 
   clickDelMatcherIcon(matcherIndex: number) {
-    this.alertmanagerRouteMatchers.splice(matcherIndex, 1);
+    this.subForms.removeAt(matcherIndex);
   }
 
   addNewReceiver() {
-    this.alertmanagerRouteMapReceivers.push({
-      selectedValue: ''
+    const grandForm = this.fb.group({
+      selectedValue: ['']
     });
+    this.grandForms.push(grandForm);
   }
 
   clickDelReceiverIcon(receiverIndex: number) {
-    this.alertmanagerRouteMapReceivers.splice(receiverIndex, 1);
+    this.grandForms.removeAt(receiverIndex);
+  }
+
+  handleLabelNameChange(labelName: string, index: number) {
+    console.log('hh')
+    this.labelNameChange.emit(labelName);
+    const labelValueControl = this.subForms.controls[index].get('labelValue');
+    labelValueControl?.setValue('');
   }
 
   receiverOptionGroup = [{

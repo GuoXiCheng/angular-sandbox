@@ -27,6 +27,10 @@ import zh from '@angular/common/locales/zh';
 import { ThirdPageComponent } from './pages/third-page/third-page.component';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { AntNotificationRuleModalComponent } from './components/ant-notification-rule-modal/ant-notification-rule-modal.component';
+import { FourthPageComponent } from './pages/fourth-page/fourth-page.component';
+import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzIconModule } from 'ng-zorro-antd/icon';
 
 registerLocaleData(zh);
 @NgModule({
@@ -34,7 +38,8 @@ registerLocaleData(zh);
     AppComponent,
     FirstPageComponent,
     SecondPageComponent,
-    ThirdPageComponent
+    ThirdPageComponent,
+    FourthPageComponent
   ],
   imports: [
     BrowserModule,
@@ -53,6 +58,9 @@ registerLocaleData(zh);
     HttpClientModule,
 
     NzButtonModule,
+    NzSelectModule,
+    NzFormModule,
+    NzIconModule,
 
     ForestGreenTableComponent,
     ForestGreenDialogComponent,

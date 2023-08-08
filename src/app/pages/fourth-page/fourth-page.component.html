@@ -1,0 +1,22 @@
+<form [formGroup]="parentForm" (ngSubmit)="submit()">
+  <input nz-input formControlName="routeName" placeholder="路由名称">
+
+  <div formArrayName="subForms">
+    <div *ngFor="let subForm of subForms.controls; let i = index" [formGroupName]="i">
+      <h3>子表单 {{ i + 1 }}</h3>
+      <nz-select nzPlaceHolder="Label Name" formControlName="labelName">
+        <nz-option *ngFor="let label of labelNames" [nzValue]="label" [nzLabel]="label"></nz-option>
+      </nz-select>
+      <nz-select nzPlaceHolder="Operator" formControlName="operator">
+        <nz-option *ngFor="let operator of operators" [nzValue]="operator" [nzLabel]="operator"></nz-option>
+      </nz-select>
+      <nz-select nzPlaceHolder="Label Value" formControlName="labelValue">
+        <nz-option *ngFor="let labelValue of labelValues" [nzValue]="labelValue" [nzLabel]="labelValue"></nz-option>
+      </nz-select>
+      <button nz-button nzType="default" (click)="removeSubForm(i)">删除子表单</button>
+    </div>
+  </div>
+  <button nz-button nzType="default" (click)="addSubForm()">添加子表单</button>
+</form>
+
+<button nz-button (click)="submit()">提交</button>
