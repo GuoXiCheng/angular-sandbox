@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NotificationRuleForm } from 'src/app/components/ant-notification-rule-modal/ant-notification-rule-modal.component';
 
 @Component({
   selector: 'app-third-page',
@@ -10,12 +11,29 @@ export class ThirdPageComponent implements OnInit {
   isVisible = false;
 
   labelNameList = ['a', 'b', 'c', 'd']
-  labelValueList: string[] = [];
+  labelValueList: {[label_name: string]: string[]} = {};
+
+  receiverOptionList = [{
+    receiverType: 'email',
+    receiverOption: [
+      {
+        uid: 'email|451d1488f98b1cd000082b5b310135f5',
+        receiverName: '测试邮件通知'
+      }
+    ]
+  }, {
+    receiverType: 'teams',
+    receiverOption: [
+      {
+        uid: 'teams|9332ad6500c4cb5759869384985b44fb',
+        receiverName: '测试teams通知'
+      }
+    ]
+  }]
 
   constructor() { }
 
   ngOnInit() {
-    this.isVisible = true;
   }
 
   clickModalBtn() {
@@ -23,21 +41,27 @@ export class ThirdPageComponent implements OnInit {
   }
 
   handleLabelNameChange(labelName: string) {
+    if (!(labelName in this.labelValueList)) {
+      this.labelValueList[labelName] = this.getLabelValue(labelName);
+    }
+  }
+
+  handleFormValueChange(formValue: NotificationRuleForm) {
+    console.log(formValue);
+  }
+
+  getLabelValue(labelName: string) {
     switch (labelName) {
       case 'a':
-        this.labelValueList = ['a1', 'a2', 'a3', 'a4']
-        break;
+        return ['a1', 'a2', 'a3', 'a4'];
       case 'b':
-        this.labelValueList = ['b1', 'b2', 'b3', 'b4']
-        break;
+        return ['b1', 'b2', 'b3', 'b4']
       case 'c':
-        this.labelValueList = ['c1', 'c2', 'c3', 'c4']
-        break;
+        return ['c1', 'c2', 'c3', 'c4']
       case 'd':
-        this.labelValueList = ['d1', 'd2', 'd3', 'd4']
-        break;
+        return ['d1', 'd2', 'd3', 'd4']
       default:
-        break;
+        return [];
     }
   }
 

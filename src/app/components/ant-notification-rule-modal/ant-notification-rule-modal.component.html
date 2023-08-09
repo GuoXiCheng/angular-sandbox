@@ -1,12 +1,28 @@
-<nz-modal nzOkText="儲存" [(nzVisible)]="isVisible" nzTitle="新增通知規則" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()"
-  [nzMaskClosable]="false" nzWidth="37.5rem">
+<nz-modal
+  nzOkText="儲存"
+  [(nzVisible)]="isVisible"
+  nzTitle="新增通知規則"
+  (nzOnCancel)="handleCancel()"
+  (nzOnOk)="handleOk()"
+  [nzMaskClosable]="false"
+  nzWidth="37.5rem"
+  [nzOkDisabled]="nzOkDisabled"
+>
   <ng-container *nzModalContent>
     <form nz-form [formGroup]="parentForm" (ngSubmit)="handleOk()">
       <nz-form-item>
-        <nz-form-label [nzSpan]="24" nzFor="email">通知規則名稱</nz-form-label>
+        <nz-form-label nzRequired [nzSpan]="24" nzFor="routeName"
+          >通知規則名稱</nz-form-label
+        >
         <nz-form-control>
-          <input nz-input name="email" type="email" id="email" placeholder="請輸入通知規則名稱" formControlName="routeName"
-            style="width: 100%" />
+          <input
+            nz-input
+            name="routeName"
+            id="routeName"
+            placeholder="請輸入通知規則名稱"
+            formControlName="routeName"
+            style="width: 100%"
+          />
         </nz-form-control>
       </nz-form-item>
 
@@ -15,24 +31,53 @@
         <a nz-button nzType="link" (click)="addNewMatcher()">+ 添加新條件</a>
       </div>
 
-      <div formArrayName="subForms">
-        <div *ngFor="let subForm of subForms.controls; let subFormItem = index" [formGroupName]="subFormItem"
-          class="matcher-container">
-          <nz-select formControlName="labelName" style="flex: 1" (ngModelChange)="handleLabelNameChange($event, subFormItem)">
-            <nz-option *ngFor="let p of labelNameList" [nzValue]="p" [nzLabel]="p"></nz-option>
+      <div formArrayName="matcherForms">
+        <div
+          *ngFor="let subForm of matcherForms.controls; let subFormItem = index"
+          [formGroupName]="subFormItem"
+          class="matcher-container"
+        >
+          <nz-select
+            formControlName="labelName"
+            style="flex: 1"
+            (ngModelChange)="handleLabelNameChange($event, subFormItem)"
+          >
+            <nz-option
+              *ngFor="let p of labelNameList"
+              [nzValue]="p"
+              [nzLabel]="p"
+            ></nz-option>
           </nz-select>
 
-          <nz-select formControlName="operator" style="flex: 1; margin: 0 0.5rem">
+          <nz-select
+            formControlName="operator"
+            style="flex: 1; margin: 0 0.5rem"
+          >
             <nz-option nzValue="=" nzLabel="等于"></nz-option>
             <nz-option nzValue="!=" nzLabel="不等于"></nz-option>
           </nz-select>
 
-          <nz-select formControlName="labelValue" [ngStyle]="{ flex: subFormItem == 0 ? '2' : '1.8' }">
-            <nz-option *ngFor="let c of labelValueList" [nzValue]="c" [nzLabel]="c"></nz-option>
+          <nz-select
+            formControlName="labelValue"
+            [ngStyle]="{ flex: subFormItem == 0 ? '2' : '1.8' }"
+          >
+            <nz-option
+              *ngFor="
+                let c of getLabelValueList(subForm.get('labelName')?.value)
+              "
+              [nzValue]="c"
+              [nzLabel]="c"
+            ></nz-option>
           </nz-select>
 
-          <span [hidden]="subFormItem == 0" nz-icon nzType="close" nzTheme="outline" class="del-icon"
-            (click)="clickDelMatcherIcon(subFormItem)"></span>
+          <span
+            [hidden]="subFormItem == 0"
+            nz-icon
+            nzType="close"
+            nzTheme="outline"
+            class="del-icon"
+            (click)="clickDelMatcherIcon(subFormItem)"
+          ></span>
         </div>
       </div>
 
@@ -41,21 +86,36 @@
         <a nz-button nzType="link" (click)="addNewReceiver()">+ 添加通知方式</a>
       </div>
 
-      <div formArrayName="grandForms">
-        <div *ngFor="let grandForm of grandForms.controls; let grandFormItem = index" [formGroupName]="grandFormItem"
-          class="receiver-container">
-          <nz-select formControlName="selectedValue" nzAllowClear style="width: 100%">
-            <ng-container *ngFor="let group of receiverOptionGroup">
-              <nz-option-group nzLabel="{{ group.groupLabel }}">
-                <ng-container *ngFor="let option of group.groupValue">
-                  <nz-option nzValue="{{ option.optionLabel }}" nzLabel="{{ option.optionValue }}"></nz-option>
+      <div formArrayName="receiverForms">
+        <div
+          *ngFor="
+            let grandForm of receiverForms.controls;
+            let grandFormItem = index
+          "
+          [formGroupName]="grandFormItem"
+          class="receiver-container"
+        >
+          <nz-select formControlName="selectedValue" style="width: 100%">
+            <ng-container *ngFor="let group of receiverOptionList">
+              <nz-option-group nzLabel="{{ group.receiverType }}">
+                <ng-container *ngFor="let option of group.receiverOption">
+                  <nz-option
+                    nzValue="{{ option.uid }}"
+                    nzLabel="{{ option.receiverName }}"
+                  ></nz-option>
                 </ng-container>
               </nz-option-group>
             </ng-container>
           </nz-select>
 
-          <span [hidden]="grandFormItem == 0" nz-icon nzType="close" nzTheme="outline" class="del-icon"
-            (click)="clickDelReceiverIcon(grandFormItem)"></span>
+          <span
+            [hidden]="grandFormItem == 0"
+            nz-icon
+            nzType="close"
+            nzTheme="outline"
+            class="del-icon"
+            (click)="clickDelReceiverIcon(grandFormItem)"
+          ></span>
         </div>
       </div>
     </form>
