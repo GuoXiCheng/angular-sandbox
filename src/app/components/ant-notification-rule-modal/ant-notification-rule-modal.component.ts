@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzFormModule } from 'ng-zorro-antd/form';
-import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormArray, FormsModule, ReactiveFormsModule, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { distinctUntilChanged } from 'rxjs';
@@ -14,16 +14,19 @@ import { distinctUntilChanged } from 'rxjs';
   imports: [CommonModule, NzModalModule, NzFormModule, FormsModule, NzSelectModule, NzIconModule, ReactiveFormsModule]
 })
 export class AntNotificationRuleModalComponent implements OnInit {
+
+  nzOkDisabled = true;
+
   @Input() isVisible = false;
   @Input() labelNameList: string[] = [];
-  @Input() labelValueList: {[label_name: string]: string[]} = {};
-  @Input() receiverOptionList: Array<{receiver_type: string, receiver_option: Array<{uid: string, receiver_name: string}>}> = [];
+  @Input() labelValueList: { [label_name: string]: string[] } = {};
+  @Input() receiverOptionList: Array<{ receiver_type: string, receiver_option: Array<{ uid: string, receiver_name: string }> }> = [];
 
   @Output() isVisibleChange = new EventEmitter<boolean>();
   @Output() labelNameChange = new EventEmitter<string>();
   @Output() formValueChange = new EventEmitter<any>();
 
-  parentForm: FormGroup;
+  parentForm: UntypedFormGroup;
 
   get subForms() {
     return this.parentForm.get('subForms') as FormArray;
@@ -34,9 +37,9 @@ export class AntNotificationRuleModalComponent implements OnInit {
   }
 
 
-  constructor(private fb: FormBuilder) { 
+  constructor(private fb: UntypedFormBuilder) {
     this.parentForm = this.fb.group({
-      routeName: [''],
+      routeName: ['', [Validators.required]],
       subForms: this.fb.array([]),
       grandForms: this.fb.array([])
     });
@@ -53,10 +56,13 @@ export class AntNotificationRuleModalComponent implements OnInit {
         this.handleLabelNameChange(newLabelName, index);
       });
     });
-    
+
   }
 
   ngOnInit() {
+    this.parentForm.valueChanges.subscribe(() => {
+      this.nzOkDisabled = !this.parentForm.valid;
+    });
   }
 
   handleOk(): void {
@@ -69,9 +75,9 @@ export class AntNotificationRuleModalComponent implements OnInit {
 
   addNewMatcher() {
     const subForm = this.fb.group({
-      labelName: [''],
-      operator: [''],
-      labelValue: ['']
+      labelName: ['', [Validators.required]],
+      operator: ['', [Validators.required]],
+      labelValue: ['', [Validators.required]]
     });
     this.subForms.push(subForm);
   }
@@ -82,7 +88,7 @@ export class AntNotificationRuleModalComponent implements OnInit {
 
   addNewReceiver() {
     const grandForm = this.fb.group({
-      selectedValue: ['']
+      selectedValue: ['', [Validators.required]]
     });
     this.grandForms.push(grandForm);
   }
