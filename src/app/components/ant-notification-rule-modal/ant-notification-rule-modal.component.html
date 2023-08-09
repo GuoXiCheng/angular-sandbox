@@ -31,9 +31,9 @@
         <a nz-button nzType="link" (click)="addNewMatcher()">+ 添加新條件</a>
       </div>
 
-      <div formArrayName="subForms">
+      <div formArrayName="matcherForms">
         <div
-          *ngFor="let subForm of subForms.controls; let subFormItem = index"
+          *ngFor="let subForm of matcherForms.controls; let subFormItem = index"
           [formGroupName]="subFormItem"
           class="matcher-container"
         >
@@ -86,10 +86,10 @@
         <a nz-button nzType="link" (click)="addNewReceiver()">+ 添加通知方式</a>
       </div>
 
-      <div formArrayName="grandForms">
+      <div formArrayName="receiverForms">
         <div
           *ngFor="
-            let grandForm of grandForms.controls;
+            let grandForm of receiverForms.controls;
             let grandFormItem = index
           "
           [formGroupName]="grandFormItem"
@@ -97,11 +97,11 @@
         >
           <nz-select formControlName="selectedValue" style="width: 100%">
             <ng-container *ngFor="let group of receiverOptionList">
-              <nz-option-group nzLabel="{{ group.receiver_type }}">
-                <ng-container *ngFor="let option of group.receiver_option">
+              <nz-option-group nzLabel="{{ group.receiverType }}">
+                <ng-container *ngFor="let option of group.receiverOption">
                   <nz-option
                     nzValue="{{ option.uid }}"
-                    nzLabel="{{ option.receiver_name }}"
+                    nzLabel="{{ option.receiverName }}"
                   ></nz-option>
                 </ng-container>
               </nz-option-group>
