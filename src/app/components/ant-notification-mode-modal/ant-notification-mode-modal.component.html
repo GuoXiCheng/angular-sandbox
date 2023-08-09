@@ -46,7 +46,7 @@
             <nz-form-label [nzSpan]="24" nzFor="emailFrom"
               >寄件人</nz-form-label
             >
-            <nz-form-control>
+            <nz-form-control nzErrorTip="这不是一个有效邮箱">
               <input
                 nz-input
                 name="emailFrom"
@@ -61,12 +61,12 @@
             <nz-form-label nzRequired [nzSpan]="24" nzFor="emailTo"
               >收件人</nz-form-label
             >
-            <nz-form-control>
+            <nz-form-control nzErrorTip="这不是一个有效邮箱">
               <input
                 nz-input
                 name="emailTo"
                 id="emailTo"
-                placeholder="請輸入收件人並以,分隔"
+                placeholder="請輸入收件人並以逗号分隔"
                 formControlName="emailTo"
               />
             </nz-form-control>
