@@ -1,0 +1,107 @@
+<nz-modal
+  nzOkText="儲存"
+  [(nzVisible)]="isVisible"
+  nzTitle="新增通知方式"
+  (nzOnCancel)="handleCancel()"
+  (nzOnOk)="handleOk()"
+  [nzMaskClosable]="false"
+  nzWidth="37.5rem"
+  [nzOkDisabled]="nzOkDisabled"
+>
+  <ng-container *nzModalContent>
+    <form nz-form [formGroup]="parentForm" (ngSubmit)="handleOk()">
+      <nz-form-item>
+        <nz-form-label nzRequired [nzSpan]="24" nzFor="notificationMode"
+          >通知方式类型</nz-form-label
+        >
+        <nz-form-control>
+          <nz-select
+            formControlName="notificationMode"
+            (ngModelChange)="handleNotificationModeChange($event)"
+          >
+            <nz-option nzValue="email" nzLabel="email"></nz-option>
+            <nz-option nzValue="teams" nzLabel="teams"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label nzRequired [nzSpan]="24" nzFor="receiverName"
+          >通知方式名稱</nz-form-label
+        >
+        <nz-form-control>
+          <input
+            nz-input
+            name="receiverName"
+            id="receiverName"
+            placeholder="請輸入通知方式名稱"
+            formControlName="receiverName"
+          />
+        </nz-form-control>
+      </nz-form-item>
+
+      <ng-container [ngSwitch]="parentForm.get('notificationMode')?.value">
+        <div *ngSwitchCase="'email'">
+          <nz-form-item>
+            <nz-form-label [nzSpan]="24" nzFor="emailFrom"
+              >寄件人</nz-form-label
+            >
+            <nz-form-control>
+              <input
+                nz-input
+                name="emailFrom"
+                id="emailFrom"
+                placeholder="請輸入寄件人"
+                formControlName="emailFrom"
+              />
+            </nz-form-control>
+          </nz-form-item>
+
+          <nz-form-item>
+            <nz-form-label nzRequired [nzSpan]="24" nzFor="emailTo"
+              >收件人</nz-form-label
+            >
+            <nz-form-control>
+              <input
+                nz-input
+                name="emailTo"
+                id="emailTo"
+                placeholder="請輸入收件人並以,分隔"
+                formControlName="emailTo"
+              />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div *ngSwitchCase="'teams'">
+          <nz-form-item>
+            <nz-form-label nzRequired [nzSpan]="24" nzfor="teamsUrl"
+              >Teams 频道链接</nz-form-label
+            >
+            <nz-form-control nzErrorTip="这不是一个有效链接">
+              <textarea
+                rows="4"
+                nz-input
+                name="teamsUrl"
+                id="teamsUrl"
+                placeholder="請輸入 Teams 频道链接"
+                formControlName="teamsUrl"
+              ></textarea>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </ng-container>
+
+      <nz-form-item>
+        <nz-form-label nzRequired [nzSpan]="24" nzfor="sendResolved"
+          >是否通知已解決的告警</nz-form-label
+        >
+        <nz-form-control>
+          <nz-radio-group formControlName="sendResolved">
+            <label nz-radio nzValue="true">是</label>
+            <label nz-radio nzValue="false">否</label>
+          </nz-radio-group>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </ng-container>
+</nz-modal>
