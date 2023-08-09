@@ -16,4 +16,8 @@ export class FourthPageComponent implements OnInit {
   clickOpenModal() {
     this.isVisible = true;
   }
+
+  handleFormValueChange(formValue: any) {
+    console.log(formValue);
+  }
 }
