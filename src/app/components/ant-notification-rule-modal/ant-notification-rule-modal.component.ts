@@ -7,6 +7,19 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { distinctUntilChanged } from 'rxjs';
 import { NzInputModule } from 'ng-zorro-antd/input';
+
+export interface NotificationRuleForm {
+  routeName: string;
+  matcherForms: Array<{
+    labelName: string;
+    operator: string;
+    labelValue: string;
+  }>;
+  receiverForms: Array<{
+    selectedValue: string;
+  }>
+}
+
 @Component({
   selector: 'app-ant-notification-rule-modal',
   templateUrl: './ant-notification-rule-modal.component.html',
@@ -25,7 +38,7 @@ export class AntNotificationRuleModalComponent implements OnInit {
 
   @Output() isVisibleChange = new EventEmitter<boolean>();
   @Output() labelNameChange = new EventEmitter<string>();
-  @Output() formValueChange = new EventEmitter<any>();
+  @Output() formValueChange = new EventEmitter<NotificationRuleForm>();
 
   parentForm: UntypedFormGroup;
 

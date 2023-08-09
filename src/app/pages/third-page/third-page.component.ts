@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NotificationRuleForm } from 'src/app/components/ant-notification-rule-modal/ant-notification-rule-modal.component';
 
 @Component({
   selector: 'app-third-page',
@@ -33,7 +34,6 @@ export class ThirdPageComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.isVisible = true;
   }
 
   clickModalBtn() {
@@ -46,7 +46,7 @@ export class ThirdPageComponent implements OnInit {
     }
   }
 
-  formValueChange(formValue: any) {
+  handleFormValueChange(formValue: NotificationRuleForm) {
     console.log(formValue);
   }
 
