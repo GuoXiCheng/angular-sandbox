@@ -3,7 +3,7 @@
   <ng-container *nzModalContent>
     <form nz-form [formGroup]="parentForm" (ngSubmit)="handleOk()">
       <nz-form-item>
-        <nz-form-label [nzSpan]="24" nzFor="email">通知規則名稱</nz-form-label>
+        <nz-form-label nzRequired [nzSpan]="24" nzFor="email">通知規則名稱</nz-form-label>
         <nz-form-control>
           <input nz-input name="email" type="email" id="email" placeholder="請輸入通知規則名稱" formControlName="routeName"
             style="width: 100%" />

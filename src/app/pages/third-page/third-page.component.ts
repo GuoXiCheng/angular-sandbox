@@ -46,6 +46,10 @@ export class ThirdPageComponent implements OnInit {
     }
   }
 
+  formValueChange(formValue: any) {
+    console.log(formValue);
+  }
+
   getLabelValue(labelName: string) {
     switch (labelName) {
       case 'a':

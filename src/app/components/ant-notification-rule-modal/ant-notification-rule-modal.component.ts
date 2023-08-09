@@ -21,6 +21,7 @@ export class AntNotificationRuleModalComponent implements OnInit {
 
   @Output() isVisibleChange = new EventEmitter<boolean>();
   @Output() labelNameChange = new EventEmitter<string>();
+  @Output() formValueChange = new EventEmitter<any>();
 
   parentForm: FormGroup;
 
@@ -59,11 +60,11 @@ export class AntNotificationRuleModalComponent implements OnInit {
   }
 
   handleOk(): void {
-    console.log(this.parentForm.value);
+    this.formValueChange.emit(this.parentForm.value);
   }
 
   handleCancel(): void {
-    this.isVisible = false;
+    this.isVisibleChange.emit(false);
   }
 
   addNewMatcher() {
