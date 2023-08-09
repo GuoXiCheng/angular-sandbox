@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NotificationRuleForm } from 'src/app/components/ant-notification-rule-modal/ant-notification-rule-modal.component';
+import { NotificationRuleEntity, NotificationRuleForm } from 'src/app/components/ant-notification-rule-modal/ant-notification-rule-modal.component';
 
 @Component({
   selector: 'app-third-page',
@@ -10,7 +10,7 @@ export class ThirdPageComponent implements OnInit {
 
   isVisible = false;
 
-  labelNameList = ['a', 'b', 'c', 'd']
+  labelNameList = ['test-label-name', 'a', 'b', 'c', 'd']
   labelValueList: {[label_name: string]: string[]} = {};
 
   receiverOptionList = [{
@@ -30,10 +30,34 @@ export class ThirdPageComponent implements OnInit {
       }
     ]
   }]
+  // formData = null;
+  formData = {
+    "id": 19,
+    "route_name": "test-route-name",
+    "alertmanagerRouteMatchers": [
+        {
+            "label_name": "test-label-name",
+            "operator": "!=",
+            "label_value": "test-label-value"
+        }
+    ],
+    "alertmanagerRouteMapReceivers": [
+        {
+            "receiver_uid": "451d1488f98b1cd000082b5b310135f5",
+            "receiver_type": "email"
+        },
+        {
+            "receiver_uid": "9332ad6500c4cb5759869384985b44fb",
+            "receiver_type": "teams"
+
+        }
+    ]
+}
 
   constructor() { }
 
   ngOnInit() {
+    this.isVisible = true;
   }
 
   clickModalBtn() {
@@ -46,7 +70,7 @@ export class ThirdPageComponent implements OnInit {
     }
   }
 
-  handleFormValueChange(formValue: NotificationRuleForm) {
+  handleFormValueChange(formValue: NotificationRuleEntity) {
     console.log(formValue);
   }
 
