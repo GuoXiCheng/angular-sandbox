@@ -17,6 +17,7 @@ export class AntNotificationRuleModalComponent implements OnInit {
   @Input() isVisible = false;
   @Input() labelNameList: string[] = [];
   @Input() labelValueList: {[label_name: string]: string[]} = {};
+  @Input() receiverOptionList: Array<{receiver_type: string, receiver_option: Array<{uid: string, receiver_name: string}>}> = [];
 
   @Output() isVisibleChange = new EventEmitter<boolean>();
   @Output() labelNameChange = new EventEmitter<string>();
@@ -98,22 +99,4 @@ export class AntNotificationRuleModalComponent implements OnInit {
   getLabelValueList(selectedLabelName: string) {
     return this.labelValueList[selectedLabelName] || [];
   }
-
-  receiverOptionGroup = [{
-    groupLabel: 'email',
-    groupValue: [
-      {
-        optionLabel: 'email|451d1488f98b1cd000082b5b310135f5',
-        optionValue: '测试邮件通知'
-      }
-    ]
-  }, {
-    groupLabel: 'teams',
-    groupValue: [
-      {
-        optionLabel: 'teams|9332ad6500c4cb5759869384985b44fb',
-        optionValue: '测试teams通知'
-      }
-    ]
-  }]
 }

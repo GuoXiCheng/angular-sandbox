@@ -12,6 +12,24 @@ export class ThirdPageComponent implements OnInit {
   labelNameList = ['a', 'b', 'c', 'd']
   labelValueList: {[label_name: string]: string[]} = {};
 
+  receiverOptionList = [{
+    receiver_type: 'email',
+    receiver_option: [
+      {
+        uid: 'email|451d1488f98b1cd000082b5b310135f5',
+        receiver_name: '测试邮件通知'
+      }
+    ]
+  }, {
+    receiver_type: 'teams',
+    receiver_option: [
+      {
+        uid: 'teams|9332ad6500c4cb5759869384985b44fb',
+        receiver_name: '测试teams通知'
+      }
+    ]
+  }]
+
   constructor() { }
 
   ngOnInit() {

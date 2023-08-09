@@ -1,3 +1,8 @@
 <button nz-button nzType="primary" (click)="clickModalBtn()">Open Modal</button>
-<app-ant-notification-rule-modal [(isVisible)]="isVisible" [labelNameList]="labelNameList" [labelValueList]="labelValueList"
-    (labelNameChange)="handleLabelNameChange($event)"></app-ant-notification-rule-modal>
+<app-ant-notification-rule-modal
+  [(isVisible)]="isVisible"
+  [labelNameList]="labelNameList"
+  [labelValueList]="labelValueList"
+  [receiverOptionList]="receiverOptionList"
+  (labelNameChange)="handleLabelNameChange($event)"
+></app-ant-notification-rule-modal>

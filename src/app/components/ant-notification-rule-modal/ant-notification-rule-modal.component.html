@@ -45,10 +45,10 @@
         <div *ngFor="let grandForm of grandForms.controls; let grandFormItem = index" [formGroupName]="grandFormItem"
           class="receiver-container">
           <nz-select formControlName="selectedValue" nzAllowClear style="width: 100%">
-            <ng-container *ngFor="let group of receiverOptionGroup">
-              <nz-option-group nzLabel="{{ group.groupLabel }}">
-                <ng-container *ngFor="let option of group.groupValue">
-                  <nz-option nzValue="{{ option.optionLabel }}" nzLabel="{{ option.optionValue }}"></nz-option>
+            <ng-container *ngFor="let group of receiverOptionList">
+              <nz-option-group nzLabel="{{ group.receiver_type }}">
+                <ng-container *ngFor="let option of group.receiver_option">
+                  <nz-option nzValue="{{ option.uid }}" nzLabel="{{ option.receiver_name }}"></nz-option>
                 </ng-container>
               </nz-option-group>
             </ng-container>
