@@ -16,7 +16,7 @@ import { distinctUntilChanged } from 'rxjs';
 export class AntNotificationRuleModalComponent implements OnInit {
   @Input() isVisible = false;
   @Input() labelNameList: string[] = [];
-  @Input() labelValueList: string[] = [];
+  @Input() labelValueList: {[label_name: string]: string[]} = {};
 
   @Output() isVisibleChange = new EventEmitter<boolean>();
   @Output() labelNameChange = new EventEmitter<string>();
@@ -48,7 +48,6 @@ export class AntNotificationRuleModalComponent implements OnInit {
       labelNameControl?.valueChanges.pipe(
         distinctUntilChanged()
       ).subscribe(newLabelName => {
-        console.log('--')
         this.handleLabelNameChange(newLabelName, index);
       });
     });
@@ -91,10 +90,13 @@ export class AntNotificationRuleModalComponent implements OnInit {
   }
 
   handleLabelNameChange(labelName: string, index: number) {
-    console.log('hh')
     this.labelNameChange.emit(labelName);
     const labelValueControl = this.subForms.controls[index].get('labelValue');
     labelValueControl?.setValue('');
+  }
+
+  getLabelValueList(selectedLabelName: string) {
+    return this.labelValueList[selectedLabelName] || [];
   }
 
   receiverOptionGroup = [{

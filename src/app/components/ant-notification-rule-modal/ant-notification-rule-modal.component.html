@@ -28,7 +28,7 @@
           </nz-select>
 
           <nz-select formControlName="labelValue" [ngStyle]="{ flex: subFormItem == 0 ? '2' : '1.8' }">
-            <nz-option *ngFor="let c of labelValueList" [nzValue]="c" [nzLabel]="c"></nz-option>
+            <nz-option *ngFor="let c of getLabelValueList(subForm.get('labelName')?.value)" [nzValue]="c" [nzLabel]="c"></nz-option>
           </nz-select>
 
           <span [hidden]="subFormItem == 0" nz-icon nzType="close" nzTheme="outline" class="del-icon"

@@ -10,7 +10,7 @@ export class ThirdPageComponent implements OnInit {
   isVisible = false;
 
   labelNameList = ['a', 'b', 'c', 'd']
-  labelValueList: string[] = [];
+  labelValueList: {[label_name: string]: string[]} = {};
 
   constructor() { }
 
@@ -23,21 +23,23 @@ export class ThirdPageComponent implements OnInit {
   }
 
   handleLabelNameChange(labelName: string) {
+    if (!(labelName in this.labelValueList)) {
+      this.labelValueList[labelName] = this.getLabelValue(labelName);
+    }
+  }
+
+  getLabelValue(labelName: string) {
     switch (labelName) {
       case 'a':
-        this.labelValueList = ['a1', 'a2', 'a3', 'a4']
-        break;
+        return ['a1', 'a2', 'a3', 'a4'];
       case 'b':
-        this.labelValueList = ['b1', 'b2', 'b3', 'b4']
-        break;
+        return ['b1', 'b2', 'b3', 'b4']
       case 'c':
-        this.labelValueList = ['c1', 'c2', 'c3', 'c4']
-        break;
+        return ['c1', 'c2', 'c3', 'c4']
       case 'd':
-        this.labelValueList = ['d1', 'd2', 'd3', 'd4']
-        break;
+        return ['d1', 'd2', 'd3', 'd4']
       default:
-        break;
+        return [];
     }
   }
 
