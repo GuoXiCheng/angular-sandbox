@@ -18,6 +18,7 @@
           <nz-select
             formControlName="notificationMode"
             (ngModelChange)="handleNotificationModeChange($event)"
+            [nzDisabled]="nzDisabledSelect"
           >
             <nz-option nzValue="email" nzLabel="email"></nz-option>
             <nz-option nzValue="teams" nzLabel="teams"></nz-option>

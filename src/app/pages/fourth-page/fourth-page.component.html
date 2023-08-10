@@ -1,2 +1,2 @@
 <button nz-button nzType="primary" (click)="clickOpenModal()">Open Mode Modal</button>
-<app-ant-notification-mode-modal [(isVisible)]="isVisible" (formValueChange)="handleFormValueChange($event)"></app-ant-notification-mode-modal>
+<app-ant-notification-mode-modal [(isVisible)]="isVisible" [formData]="formData" (formValueChange)="handleFormValueChange($event)"></app-ant-notification-mode-modal>
