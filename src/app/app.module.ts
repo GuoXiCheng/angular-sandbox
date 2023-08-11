@@ -32,6 +32,8 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { AntNotificationModeModalComponent } from './components/ant-notification-mode-modal/ant-notification-mode-modal.component';
+import { FifthPageComponent } from './pages/fifth-page/fifth-page.component';
+import { AntAlertCardComponent } from './components/ant-alert-card/ant-alert-card.component';
 
 registerLocaleData(zh);
 @NgModule({
@@ -40,7 +42,8 @@ registerLocaleData(zh);
     FirstPageComponent,
     SecondPageComponent,
     ThirdPageComponent,
-    FourthPageComponent
+    FourthPageComponent,
+    FifthPageComponent
   ],
   imports: [
     BrowserModule,
@@ -68,8 +71,10 @@ registerLocaleData(zh);
     InputFieldGroupComponent,
     MatSnackbarComponent,
     NotificationRuleDialogComponent,
+
     AntNotificationRuleModalComponent,
-    AntNotificationModeModalComponent
+    AntNotificationModeModalComponent,
+    AntAlertCardComponent
   ],
   providers: [
   
