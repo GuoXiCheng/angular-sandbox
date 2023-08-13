@@ -1,0 +1,18 @@
+.severity-container {
+    display: flex;
+    height: 20px;
+    padding: 1px 8px;
+    align-items: center;
+}
+
+.severity-container svg {
+    margin-right: 4px;
+}
+
+.severity-text {
+    font-family: Roboto;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 20px;
+}
