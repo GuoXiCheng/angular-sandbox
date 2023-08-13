@@ -1,3 +1,5 @@
-<div style="padding: 1rem;background-color: #f0f0f0;height: 100%;">
-  <app-ant-alert-card></app-ant-alert-card>
+<div style="padding: 1rem;background-color: #f0f0f0;">
+  <ng-container *ngFor="let card of cardList;let i = index">
+    <app-ant-alert-card [severity]="card.severity"></app-ant-alert-card>
+  </ng-container>
 </div>

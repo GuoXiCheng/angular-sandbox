@@ -7,6 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FifthPageComponent implements OnInit {
 
+  cardList = [{
+    severity: 'low'
+  }, {
+    severity: 'medium'
+  }, {
+    severity: 'high'
+  }, {
+    severity: 'critical'
+  }]
+
   constructor() { }
 
   ngOnInit() {

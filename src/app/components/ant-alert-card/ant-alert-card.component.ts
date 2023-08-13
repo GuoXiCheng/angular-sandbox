@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 
@@ -11,6 +11,8 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
   imports: [CommonModule, NzCardModule, NzIconModule]
 })
 export class AntAlertCardComponent implements OnInit {
+
+  @Input() severity = 'low';
 
   constructor() { }
 

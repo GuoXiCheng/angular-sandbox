@@ -1,7 +1,65 @@
-<nz-card nzTitle="Card title" [nzExtra]="extraTemplate">
-  <p>内容</p>
-  <p>群组</p>
+<nz-card nzTitle="AHU高液位報警" [nzExtra]="extraTemplate">
+  <p>内容 [報警] [溫濕度實時監控系統] P6-IP3濕度超標:71.1%Goal:30~70%</p>
+  <p>群组 BMS系統報警</p>
 </nz-card>
 <ng-template #extraTemplate>
-  <a color="primary"><span nz-icon nzType="form" nzTheme="outline"></span></a>
+
+  <ng-container *ngTemplateOutlet="severitySwitch"></ng-container>
+
+</ng-template>
+<ng-template #severitySwitch>
+  <div [ngSwitch]="severity">
+    <ng-container *ngSwitchCase="'critical'">
+      <div class="severity-container">
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+          <rect x="1" y="9.49847" width="10" height="1.5" fill="#791A1F" />
+          <rect x="1" y="6.79861" width="10" height="1.5" fill="#791A1F" />
+          <rect x="1" y="4.09875" width="10" height="1.5" fill="#791A1F" />
+          <rect x="1" y="1.3989" width="10" height="1.5" fill="#791A1F" />
+        </svg>
+        <div class="severity-text" style="color: #791A1F;">
+          Critical
+        </div>
+      </div>
+    </ng-container>
+    <ng-container *ngSwitchCase="'high'">
+      <div class="severity-container">
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+          <rect x="1" y="9.49847" width="10" height="1.5" fill="#E84749" />
+          <rect x="1" y="6.79861" width="10" height="1.5" fill="#E84749" />
+          <rect x="1" y="4.09875" width="10" height="1.5" fill="#E84749" />
+          <rect x="1" y="1.3989" width="10" height="1.5" fill="#f0f0f0" />
+        </svg>
+        <div class="severity-text" style="color: #E84749;">
+          High
+        </div>
+      </div>
+    </ng-container>
+    <ng-container *ngSwitchCase="'medium'">
+      <div class="severity-container">
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+          <rect x="1" y="9.49847" width="10" height="1.5" fill="#D89614" />
+          <rect x="1" y="6.79861" width="10" height="1.5" fill="#D89614" />
+          <rect x="1" y="4.09875" width="10" height="1.5" fill="#f0f0f0" />
+          <rect x="1" y="1.3989" width="10" height="1.5" fill="#f0f0f0" />
+        </svg>
+        <div class="severity-text" style="color: #D89614;">
+          Medium
+        </div>
+      </div>
+    </ng-container>
+    <ng-container *ngSwitchDefault>
+      <div class="severity-container">
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+          <rect x="1" y="9.49847" width="10" height="1.5" fill="#E8B339" />
+          <rect x="1" y="6.79861" width="10" height="1.5" fill="#f0f0f0" />
+          <rect x="1" y="4.09875" width="10" height="1.5" fill="#f0f0f0" />
+          <rect x="1" y="1.3989" width="10" height="1.5" fill="#f0f0f0" />
+        </svg>
+        <div class="severity-text" style="color: #E8B339;">
+          Low
+        </div>
+      </div>
+    </ng-container>
+  </div>
 </ng-template>
