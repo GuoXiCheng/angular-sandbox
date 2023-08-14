@@ -7,6 +7,7 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { distinctUntilChanged } from 'rxjs';
 import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzButtonModule } from 'ng-zorro-antd/button';
 
 function createParentForm(fb: UntypedFormBuilder, routeName?: string) {
   return fb.group({
@@ -47,7 +48,7 @@ export interface NotificationRuleEntity {
   templateUrl: './ant-notification-rule-modal.component.html',
   styleUrls: ['./ant-notification-rule-modal.component.css'],
   standalone: true,
-  imports: [NzInputModule, CommonModule, NzModalModule, NzFormModule, FormsModule, NzSelectModule, NzIconModule, ReactiveFormsModule]
+  imports: [NzButtonModule, NzInputModule, CommonModule, NzModalModule, NzFormModule, FormsModule, NzSelectModule, NzIconModule, ReactiveFormsModule]
 })
 export class AntNotificationRuleModalComponent implements OnInit {
 
@@ -102,6 +103,10 @@ export class AntNotificationRuleModalComponent implements OnInit {
   }
 
   handleOk(): void {
+    this.formValueChange.emit(this.formToEntity(this.parentForm.value));
+  }
+
+  handleDelete() {
     this.formValueChange.emit(this.formToEntity(this.parentForm.value));
   }
 
