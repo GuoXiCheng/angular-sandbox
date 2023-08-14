@@ -3,21 +3,21 @@
 // import { By } from '@angular/platform-browser';
 // import { DebugElement } from '@angular/core';
 
-// import { FifthPageComponent } from './fifth-page.component';
+// import { SeventhPageComponent } from './seventh-page.component';
 
-// describe('FifthPageComponent', () => {
-//   let component: FifthPageComponent;
-//   let fixture: ComponentFixture<FifthPageComponent>;
+// describe('SeventhPageComponent', () => {
+//   let component: SeventhPageComponent;
+//   let fixture: ComponentFixture<SeventhPageComponent>;
 
 //   beforeEach(async(() => {
 //     TestBed.configureTestingModule({
-//       declarations: [ FifthPageComponent ]
+//       declarations: [ SeventhPageComponent ]
 //     })
 //     .compileComponents();
 //   }));
 
 //   beforeEach(() => {
-//     fixture = TestBed.createComponent(FifthPageComponent);
+//     fixture = TestBed.createComponent(SeventhPageComponent);
 //     component = fixture.componentInstance;
 //     fixture.detectChanges();
 //   });
