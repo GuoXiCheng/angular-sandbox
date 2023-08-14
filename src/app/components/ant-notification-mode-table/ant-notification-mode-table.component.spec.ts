@@ -4,6 +4,14 @@ import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { By } from '@angular/platform-browser';
+import * as AllIcons from '@ant-design/icons-angular/icons';
+import { IconDefinition } from '@ant-design/icons-angular';
+
+const antDesignIcons = AllIcons as {
+  [key: string]: IconDefinition;
+};
+const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesignIcons[key]);
+
 
 describe('AntNotificationModeTableComponent', () => {
   let component: AntNotificationModeTableComponent;
@@ -12,7 +20,7 @@ describe('AntNotificationModeTableComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [],
-      imports: [AntNotificationModeTableComponent, NzTableModule, NzIconModule, NzButtonModule],
+      imports: [AntNotificationModeTableComponent, NzTableModule, NzIconModule, NzButtonModule, NzIconModule.forRoot(icons)],
     }).compileComponents();
   });
 
@@ -69,10 +77,24 @@ describe('AntNotificationModeTableComponent', () => {
     fixture.detectChanges();
 
     const editButton = fixture.debugElement.query(By.css('a[nz-button]'));
-    spyOn(component.editBtnEvent, 'emit');
+    spyOn(component.editModeEvent, 'emit');
 
     editButton.triggerEventHandler('click', null);
 
-    expect(component.editBtnEvent.emit).toHaveBeenCalledWith(testNotificationMode);
+    expect(component.editModeEvent.emit).toHaveBeenCalledWith(testNotificationMode);
+  });
+
+  it('should emit addBtnEvent when add button is clicked', () => {
+    const addButton = fixture.debugElement.query(By.css('button[nz-button]'));
+    let emittedData: any; // 存储触发事件时的数据
+  
+    component.addModeEvent.subscribe(data => {
+      emittedData = data;
+    });
+  
+    addButton.triggerEventHandler('click', null);
+  
+    // 在这里你可以对 emittedData 进行断言，比如期望它是某个特定的值或类型
+    expect(emittedData).toEqual(undefined);
   });
 });

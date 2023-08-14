@@ -31,4 +31,8 @@ export class SixthPageComponent implements OnInit {
     console.log(item);
   }
 
+  handleAddModeEvent() {
+    console.log('add mode clicked');
+  }
+
 }

@@ -24,7 +24,8 @@ export class AntNotificationModeTableComponent implements OnInit {
 
   @Input() database: NotificationMode[] = [];
 
-  @Output() editBtnEvent = new EventEmitter<NotificationMode>();
+  @Output() editModeEvent = new EventEmitter<NotificationMode>();
+  @Output() addModeEvent = new EventEmitter<void>();
 
   constructor() { }
 
@@ -32,6 +33,10 @@ export class AntNotificationModeTableComponent implements OnInit {
   }
 
   clickEditBtn(item: NotificationMode) {
-    this.editBtnEvent.emit(item);
+    this.editModeEvent.emit(item);
+  }
+
+  clickAddBtn() {
+    this.addModeEvent.emit();
   }
 }

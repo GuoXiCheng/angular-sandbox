@@ -1,1 +1,5 @@
-<app-ant-notification-mode-table [database]="database" (editBtnEvent)="handleEditBtnEvent($event)"></app-ant-notification-mode-table>
+<app-ant-notification-mode-table
+  [database]="database"
+  (editModeEvent)="handleEditBtnEvent($event)"
+  (addModeEvent)="handleAddModeEvent()"
+></app-ant-notification-mode-table>
