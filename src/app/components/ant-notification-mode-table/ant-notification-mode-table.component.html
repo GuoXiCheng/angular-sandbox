@@ -1,0 +1,24 @@
+<nz-table #basicTable [nzData]="database" nzShowPagination="false">
+  <thead>
+    <tr>
+      <th>通知方式</th>
+      <th>通知名称</th>
+      <th>更新人员</th>
+      <th>更新时间</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of basicTable.data">
+      <td>{{ data.receiver_type }}</td>
+      <td>{{ data.receiver_name }}</td>
+      <td>{{ data.update_by }}</td>
+      <td>{{ data.update_time }}</td>
+      <td>
+        <a nz-button nzType="link" (click)="clickEditBtn(data)">
+          <span nz-icon nzType="edit" nzTheme="outline"></span>
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>
