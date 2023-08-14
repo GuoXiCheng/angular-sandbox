@@ -30,7 +30,7 @@ export class ThirdPageComponent implements OnInit {
       }
     ]
   }]
-  // formData = null;
+  formData1 = null;
   formData = {
     "id": 19,
     "route_name": "test-route-name",
