@@ -36,6 +36,8 @@ import { FifthPageComponent } from './pages/fifth-page/fifth-page.component';
 import { AntAlertCardComponent } from './components/ant-alert-card/ant-alert-card.component';
 import { SixthPageComponent } from './pages/sixth-page/sixth-page.component';
 import { AntNotificationModeTableComponent } from './components/ant-notification-mode-table/ant-notification-mode-table.component';
+import { SeventhPageComponent } from './pages/seventh-page/seventh-page.component';
+import { AntNotificationRuleTableComponent } from './components/ant-notification-rule-table/ant-notification-rule-table.component';
 
 registerLocaleData(zh);
 @NgModule({
@@ -47,6 +49,7 @@ registerLocaleData(zh);
     FourthPageComponent,
     FifthPageComponent,
     SixthPageComponent,
+    SeventhPageComponent
   ],
   imports: [
     BrowserModule,
@@ -78,7 +81,8 @@ registerLocaleData(zh);
     AntNotificationRuleModalComponent,
     AntNotificationModeModalComponent,
     AntAlertCardComponent,
-    AntNotificationModeTableComponent
+    AntNotificationModeTableComponent,
+    AntNotificationRuleTableComponent
   ],
   providers: [
   

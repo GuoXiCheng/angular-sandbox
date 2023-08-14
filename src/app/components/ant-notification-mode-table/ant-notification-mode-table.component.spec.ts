@@ -59,8 +59,8 @@ describe('AntNotificationModeTableComponent', () => {
 
       expect(cells[0].nativeElement.textContent).toContain(rowData.receiver_type);
       expect(cells[1].nativeElement.textContent).toContain(rowData.receiver_name);
-      expect(cells[2].nativeElement.textContent).toContain(rowData.update_by);
-      expect(cells[3].nativeElement.textContent).toContain(rowData.update_time);
+      expect(cells[2].nativeElement.textContent).toContain(rowData.update_time);
+      expect(cells[3].nativeElement.textContent).toContain(rowData.update_by);
     });
   });
 

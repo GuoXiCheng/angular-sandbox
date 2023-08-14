@@ -6,6 +6,7 @@ import { ThirdPageComponent } from './pages/third-page/third-page.component';
 import { FourthPageComponent } from './pages/fourth-page/fourth-page.component';
 import { FifthPageComponent } from './pages/fifth-page/fifth-page.component';
 import { SixthPageComponent } from './pages/sixth-page/sixth-page.component';
+import { SeventhPageComponent } from './pages/seventh-page/seventh-page.component';
 
 const routes: Routes = [
   { path: '', component: FirstPageComponent },
@@ -14,7 +15,8 @@ const routes: Routes = [
   { path: 'third', component: ThirdPageComponent},
   { path: 'fourth', component: FourthPageComponent},
   { path: 'fifth', component: FifthPageComponent},
-  { path: 'sixth', component: SixthPageComponent}
+  { path: 'sixth', component: SixthPageComponent},
+  { path: 'seventh', component: SeventhPageComponent}
 ];
 
 @NgModule({

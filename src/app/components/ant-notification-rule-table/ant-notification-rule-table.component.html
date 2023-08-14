@@ -1,0 +1,60 @@
+<ng-container *ngIf="disabledAllCheckbox === true; else elseBlock">
+  <button
+    nz-button
+    nzType="primary"
+    style="margin: 1.5rem 0"
+    (click)="clickEditEnableBtn()"
+  >
+    編輯
+  </button>
+</ng-container>
+
+<ng-template #elseBlock>
+  <button
+    nz-button
+    nzType="primary"
+    style="margin: 1.5rem 0"
+    (click)="clickSaveEnabledBtn()"
+  >
+    儲存
+  </button>
+</ng-template>
+
+<button
+  nz-button
+  nzType="primary"
+  style="margin: 1.5rem 0; float: right"
+  (click)="clickAddBtn()"
+>
+  <span nz-icon nzType="plus" nzTheme="outline"></span>通知規則
+</button>
+<nz-table #basicTable [nzData]="database" nzShowPagination="false">
+  <thead>
+    <tr>
+      <th>啟用</th>
+      <th>通知規則名稱</th>
+      <th>更新時間</th>
+      <th>更新人員</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of basicTable.data">
+      <td>
+        <label
+          nz-checkbox
+          [(ngModel)]="data.enabled"
+          [disabled]="disabledAllCheckbox"
+        ></label>
+      </td>
+      <td>{{ data.route_name }}</td>
+      <td>{{ data.update_time }}</td>
+      <td>{{ data.update_by }}</td>
+      <td>
+        <a nz-button nzType="link" (click)="clickEditBtn(data)">
+          <span nz-icon nzType="edit" nzTheme="outline"></span>
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>
