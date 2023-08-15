@@ -1,5 +1,6 @@
 nz-card {
     border-radius: 0.375rem;
+    margin: 0.375rem 0 ;
 }
 
 .firing-card {
@@ -27,4 +28,15 @@ nz-card {
     font-style: normal;
     font-weight: 600;
     line-height: 20px;
+}
+
+td {
+    border: 1px solid #f0f0f0;
+    padding: 0.25rem 1rem;
+}
+
+tr td:first-child {
+    background-color: rgba(240, 240, 240, 0.5);
+    text-align: center;
+    width: 6.25rem;
 }

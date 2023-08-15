@@ -4,11 +4,34 @@
   [ngClass]="cardData.status === 'firing' ? 'firing-card' : 'resolved-card'"
   [nzBodyStyle]="{ padding: '0.75rem' }"
 >
-  <div>
-    <div>内容</div>
-    <div>[報警] [溫濕度實時監控系統] P6-IP3濕度超標:71.1%Goal:30~70%</div>
+  <tr style="display: flex">
+    <td>内容</td>
+    <td style="flex: 1">
+      {{cardData.description}}
+    </td>
+  </tr>
+
+  <div style="display: flex; flex-wrap: wrap">
+    <table style="flex: 1">
+      <tr>
+        <td>告警名稱</td>
+        <td>{{ cardData.alertname }}</td>
+      </tr>
+    </table>
+
+    <table style="flex: 1">
+      <tr>
+        <td>發生時間</td>
+        <td>{{ cardData.starts_at }}</td>
+      </tr>
+    </table>
+    <table style="flex: 1">
+      <tr>
+        <td>持續時間</td>
+        <td>{{ cardData.duration }}</td>
+      </tr>
+    </table>
   </div>
-  <div>群组 BMS系統報警</div>
 </nz-card>
 
 <ng-template #titleTemplate>
