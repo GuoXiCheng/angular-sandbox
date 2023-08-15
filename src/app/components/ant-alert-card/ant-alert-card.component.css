@@ -1,3 +1,15 @@
+nz-card {
+    border-radius: 0.375rem;
+}
+
+.firing-card {
+    border-left: 5px solid #E84749;
+}
+
+.resolved-card {
+    border-left: 5px solid #49AA19;
+}
+
 .severity-container {
     display: flex;
     height: 20px;
