@@ -11,6 +11,7 @@ export class FirstPageComponent implements OnInit {
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {
+
   }
 
   searchResult = '';

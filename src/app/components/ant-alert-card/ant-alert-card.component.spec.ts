@@ -1,8 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AlertRecordEntity, AntAlertCardComponent } from './ant-alert-card.component';
-import * as moment from 'moment';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import dayjs from 'dayjs';
+import duration from 'dayjs/plugin/duration';
+dayjs.extend(duration);
 
 describe('AntAlertCardComponent', () => {
   let component: AntAlertCardComponent;
@@ -42,13 +44,13 @@ describe('AntAlertCardComponent', () => {
     component.data = mockData;
     component.ngOnInit();
 
-    // Calculate the expected duration based on mock data and moment.js
-    const startsAt = moment(mockData.starts_at);
-    const endsAt = moment(mockData.ends_at);
-    const realEndsAt = endsAt.isAfter(startsAt) ? endsAt : moment();
+    // Calculate the expected duration based on mock data and dayjs
+    const startsAt = dayjs(mockData.starts_at);
+    const endsAt = dayjs(mockData.ends_at);
+    const realEndsAt = endsAt.isAfter(startsAt) ? endsAt : dayjs();
 
-    const duration = moment.duration(realEndsAt.diff(startsAt));
-    const expectedDuration = `${duration.days()}d ${duration.hours()}h ${duration.minutes()}m`;
+    const durations = dayjs.duration(realEndsAt.diff(startsAt));
+    const expectedDuration = `${durations.days()}d ${durations.hours()}h ${durations.minutes()}m`;
 
     expect(component.cardData.duration).toBe(expectedDuration);
   });
