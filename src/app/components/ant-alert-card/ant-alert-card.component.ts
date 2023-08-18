@@ -1,8 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
-import * as moment from 'moment';
+import * as dayjs from 'dayjs';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import duration from 'dayjs/plugin/duration';
+dayjs.extend(duration);
 
 export interface AlertCard {
   summary: string;
@@ -49,18 +51,18 @@ export class AntAlertCardComponent implements OnInit {
   
     const {severity, status, starts_at, ends_at, alertname, summary, description} = this.data;
 
-    const startsAt = moment(starts_at);
-    const endsAt = moment(ends_at);
-    const realEndsAt = endsAt.isAfter(startsAt) ? endsAt: moment();
+    const startsAt = dayjs(starts_at);
+    const endsAt = dayjs(ends_at);
+    const realEndsAt = endsAt.isAfter(startsAt) ? endsAt: dayjs();
 
-    const duration = moment.duration(realEndsAt.diff(startsAt));
-    const formattedDuration = `${duration.days()}d ${duration.hours()}h ${duration.minutes()}m`;
+    const durations = dayjs.duration(realEndsAt.diff(startsAt));
+    const formattedDuration = `${durations.days()}d ${durations.hours()}h ${durations.minutes()}m`;
 
     this.cardData = {
       alertname,
       severity,
       status,
-      starts_at: moment(starts_at).format("YYYY-MM-DD HH:mm:ss"),
+      starts_at: dayjs(starts_at).format("YYYY-MM-DD HH:mm:ss"),
       duration: formattedDuration,
       summary: summary? summary: 'NO TITLE',
       description: description? description: 'NO DESCRIPTION'

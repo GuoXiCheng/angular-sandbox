@@ -18,7 +18,7 @@ import { SecondPageComponent } from './pages/second-page/second-page.component';
 import { FirstPageComponent } from './pages/first-page/first-page.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { MatSnackbarComponent } from './components/mat-snackbar/mat-snackbar.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NotificationRuleDialogComponent } from './components/notification-rule-dialog/notification-rule-dialog.component';
 import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { zh_CN } from 'ng-zorro-antd/i18n';
@@ -38,6 +38,7 @@ import { SixthPageComponent } from './pages/sixth-page/sixth-page.component';
 import { AntNotificationModeTableComponent } from './components/ant-notification-mode-table/ant-notification-mode-table.component';
 import { SeventhPageComponent } from './pages/seventh-page/seventh-page.component';
 import { AntNotificationRuleTableComponent } from './components/ant-notification-rule-table/ant-notification-rule-table.component';
+import { NzMenuModule } from 'ng-zorro-antd/menu';
 
 registerLocaleData(zh);
 @NgModule({
@@ -52,6 +53,15 @@ registerLocaleData(zh);
     SeventhPageComponent
   ],
   imports: [
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (createTranslateLoader),
+        deps: [HttpClient]
+      }
+    }),
+
+    NzMenuModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -91,3 +101,11 @@ registerLocaleData(zh);
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+// https://github.com/ngx-translate/core
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
+}
