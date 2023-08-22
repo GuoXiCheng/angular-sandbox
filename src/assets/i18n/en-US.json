@@ -1,4 +1,10 @@
 {
-    "lang": "ENGLISH",
-    "first-page": "First Page"
+    "lang": "英",
+    "first-page": "First Page",
+    "second-page": "Second Page",
+    "third-page": "Third Page",
+    "fourth-page": "Fourth Page",
+    "fifth-page": "Fifth Page",
+    "sixth-page": "Sixth Page",
+    "seventh-page": "Seventh Page"
 }

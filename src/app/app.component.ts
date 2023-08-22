@@ -8,7 +8,7 @@ import { TranslateService } from "@ngx-translate/core";
 export class AppComponent implements OnInit {
 
   isDarkTheme = false;
-  lang = '简体中文';
+  lang = '中';
 
   constructor(private renderer: Renderer2, public translateService: TranslateService) {
   }

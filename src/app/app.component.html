@@ -4,15 +4,8 @@
     </button>
 
     <div style="display: flex;align-items: center;">
-
-        <ul nz-menu nzMode="horizontal">
-            <li nz-submenu nzPlacement="bottomCenter" [nzTitle]="'lang' | translate">
-                <ul>
-                    <li nz-menu-item (click)="translateService.use('zh-CN')">简体中文</li>
-                    <li nz-menu-item (click)="translateService.use('en-US')">ENGLISH</li>
-                </ul>
-            </li>
-        </ul>
+        <span *ngIf="translateService.currentLang === 'en-US'" style="cursor: pointer;" (click)="translateService.use('zh-CN')">中</span>
+        <span *ngIf="translateService.currentLang === 'zh-CN'" style="cursor: pointer;" (click)="translateService.use('en-US')">英</span>
 
         <ng-container *ngIf="isDarkTheme; else elseBlock">
             <button mat-icon-button (click)="toggleTheme()">
@@ -27,9 +20,9 @@
         </ng-template>
 
         <a class="github-link" href="https://github.com/GuoXiCheng/angular-sandbox">
-            <img src="/assets/img/github-icon.svg" />
-            <span>GitHub</span>
+            <span nz-icon nzType="github" nzTheme="outline"></span>
         </a>
+        
     </div>
 
 </mat-toolbar>
@@ -45,32 +38,32 @@
 
             <a class="route-link" [ngClass]="isDarkTheme ? 'dark-a': 'light-a'" routerLink="/second"
                 routerLinkActive="active" ariaCurrentWhenActive="page">
-                Second Component
+                {{ 'second-page' | translate }}
             </a>
 
             <a class="route-link" [ngClass]="isDarkTheme ? 'dark-a': 'light-a'" routerLink="/third"
                 routerLinkActive="active" ariaCurrentWhenActive="page">
-                Third Component
+                {{ 'third-page' | translate}}
             </a>
 
             <a class="route-link" [ngClass]="isDarkTheme ? 'dark-a': 'light-a'" routerLink="/fourth"
                 routerLinkActive="active" ariaCurrentWhenActive="page">
-                Fourth Component
+                {{ 'fourth-page' | translate}}
             </a>
 
             <a class="route-link" [ngClass]="isDarkTheme ? 'dark-a': 'light-a'" routerLink="/fifth"
                 routerLinkActive="active" ariaCurrentWhenActive="page">
-                Fifth Component
+                {{ 'fifth-page' | translate}}
             </a>
 
             <a class="route-link" [ngClass]="isDarkTheme ? 'dark-a': 'light-a'" routerLink="/sixth"
                 routerLinkActive="active" ariaCurrentWhenActive="page">
-                Sixth Component
+                {{ 'sixth-page' | translate}}
             </a>
 
             <a class="route-link" [ngClass]="isDarkTheme ? 'dark-a': 'light-a'" routerLink="/seventh"
                 routerLinkActive="active" ariaCurrentWhenActive="page">
-                Seventh Component
+                {{ 'seventh-page' | translate}}
             </a>
         </div>
 
