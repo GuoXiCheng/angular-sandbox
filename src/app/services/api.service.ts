@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AxiosService } from './axios.service';
 
 export interface FoodHeatResult {
-  name: string | null,
+  name: string,
   img: string,
   desc: string,
   heat: string

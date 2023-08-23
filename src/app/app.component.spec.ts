@@ -5,10 +5,11 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('AppComponent', () => {
   beforeEach(() => TestBed.configureTestingModule({
-    imports: [RouterTestingModule, MatToolbarModule, MatIconModule, MatSidenavModule, BrowserAnimationsModule],
+    imports: [RouterTestingModule, MatToolbarModule, MatIconModule, MatSidenavModule, BrowserAnimationsModule, TranslateModule.forRoot()],
     declarations: [AppComponent]
   }));
 

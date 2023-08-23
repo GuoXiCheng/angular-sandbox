@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
-import { MatSnackbarComponent } from '../components/mat-snackbar/mat-snackbar.component';
 
 
 @Injectable({
@@ -11,7 +9,7 @@ export class AxiosService {
 
   private axiosInstance: AxiosInstance;
 
-  constructor(private snackBar: MatSnackBar) {
+  constructor() {
     this.axiosInstance = axios.create({
       baseURL: 'https://api.oioweb.cn',
       timeout: 10000,
@@ -34,13 +32,6 @@ export class AxiosService {
     this.axiosInstance.interceptors.response.use(
       (response: AxiosResponse) => {
         const res = response.data as { code: string, result: any, msg: string };
-        this.snackBar.openFromComponent(MatSnackbarComponent, {
-          horizontalPosition: 'center',
-          verticalPosition: 'top',
-          data: { message: res.msg },
-          duration: 3000,
-          panelClass: 'custom-snackbar'
-        });
         return res.result;
       },
       (error: any) => {
@@ -50,8 +41,8 @@ export class AxiosService {
     );
   }
 
-  public get<T>(url: string, config?: AxiosRequestConfig): Promise<AxiosResponse<T>> {
-    return this.axiosInstance.get<T>(url, config);
+  public async get<T>(url: string, config?: AxiosRequestConfig): Promise<T> {
+    return this.axiosInstance.get(url, config);
   }
 
   public post(url: string, data?: any, config?: AxiosRequestConfig): Promise<AxiosResponse> {

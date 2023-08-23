@@ -17,7 +17,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SecondPageComponent } from './pages/second-page/second-page.component';
 import { FirstPageComponent } from './pages/first-page/first-page.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
-import { MatSnackbarComponent } from './components/mat-snackbar/mat-snackbar.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NotificationRuleDialogComponent } from './components/notification-rule-dialog/notification-rule-dialog.component';
 import { NZ_I18N } from 'ng-zorro-antd/i18n';
@@ -33,9 +32,7 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { AntNotificationModeModalComponent } from './components/ant-notification-mode-modal/ant-notification-mode-modal.component';
 import { FifthPageComponent } from './pages/fifth-page/fifth-page.component';
-import { AntAlertCardComponent } from './components/ant-alert-card/ant-alert-card.component';
 import { SixthPageComponent } from './pages/sixth-page/sixth-page.component';
-import { AntNotificationModeTableComponent } from './components/ant-notification-mode-table/ant-notification-mode-table.component';
 import { SeventhPageComponent } from './pages/seventh-page/seventh-page.component';
 import { AntNotificationRuleTableComponent } from './components/ant-notification-rule-table/ant-notification-rule-table.component';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
@@ -85,14 +82,12 @@ registerLocaleData(zh);
     ForestGreenTableComponent,
     ForestGreenDialogComponent,
     InputFieldGroupComponent,
-    MatSnackbarComponent,
     NotificationRuleDialogComponent,
 
     AntNotificationRuleModalComponent,
     AntNotificationModeModalComponent,
-    AntAlertCardComponent,
-    AntNotificationModeTableComponent,
-    AntNotificationRuleTableComponent
+    AntNotificationRuleTableComponent,
+    AntTableComponent
   ],
   providers: [
   
@@ -105,6 +100,7 @@ export class AppModule { }
 
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { AntTableComponent } from './components/ant-table/ant-table.component';
 // https://github.com/ngx-translate/core
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
