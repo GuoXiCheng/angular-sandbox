@@ -6,10 +6,13 @@ import { Component, OnInit } from '@angular/core';
 	styleUrls: ['./fifth-page.component.css']
 })
 export class FifthPageComponent implements OnInit {
-
+	isExpand = true;
 	constructor() { }
 
 	ngOnInit() {
 	}
 
+	clickExpand() {
+		this.isExpand = !this.isExpand;
+	}
 }

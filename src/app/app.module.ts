@@ -87,7 +87,8 @@ registerLocaleData(zh);
     AntNotificationRuleModalComponent,
     AntNotificationModeModalComponent,
     AntNotificationRuleTableComponent,
-    AntTableComponent
+    AntTableComponent,
+    AntSideBarComponent
   ],
   providers: [
   
@@ -101,6 +102,7 @@ export class AppModule { }
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { AntTableComponent } from './components/ant-table/ant-table.component';
+import { AntSideBarComponent } from './components/ant-side-bar/ant-side-bar.component';
 // https://github.com/ngx-translate/core
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
