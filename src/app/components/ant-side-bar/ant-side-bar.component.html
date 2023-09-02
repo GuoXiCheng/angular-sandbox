@@ -1,0 +1,37 @@
+<div class="container" [ngStyle]="{ width: isExpand ? '16.5rem' : '4.5rem' }">
+  <button nz-button nzType="default" class="default-button up-button">
+    <span
+      nz-icon
+      nzType="up"
+      nzTheme="outline"
+      style="color: rgba(255, 255, 255, 0.25)"
+    ></span>
+  </button>
+  <div class="content">1</div>
+  <button nz-button nzType="default" class="default-button down-button">
+    <span
+      nz-icon
+      nzType="down"
+      nzTheme="outline"
+      style="color: rgba(255, 255, 255, 0.25)"
+    ></span>
+  </button>
+  <button
+    nz-button
+    nzType="default"
+    class="default-button today-text-button"
+    [ngStyle]="{ width: isExpand ? '4.5rem' : 'auto' }"
+  >
+    <ng-container *ngIf="isExpand; else elseBlock">
+      <span class="today-text">Today</span>
+    </ng-container>
+    <ng-template #elseBlock>
+      <span
+        nz-icon
+        nzType="calendar"
+        nzTheme="outline"
+        style="color: #5a9ab0"
+      ></span>
+    </ng-template>
+  </button>
+</div>
