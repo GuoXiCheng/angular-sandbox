@@ -14,6 +14,10 @@
     padding: 0.75rem 0.25rem;
     border-top: 1px solid rgba(255, 255, 255, 0.15);
     border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .up-button {
@@ -50,3 +54,41 @@
     border: 1px solid #424242;
     margin: 0.5rem 0rem;
 }
+
+.expand-timeline-btn {
+    border-radius: 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: #203033;
+    padding: 0.375rem;
+}
+
+.expand-timeline-date-container {
+    position: absolute;
+    bottom: 1.55rem;
+    width: 15rem;
+    display: flex;
+    justify-content: space-between;
+    height: 0.8rem;
+    line-height: 0.8rem;
+    font-size: 0.75rem;
+    padding: 0 0.8rem;
+}
+
+.expand-timeline-date-container div {
+    background-color: #203033;
+}
+
+.expand-timeline-btn-content {
+    width: 15rem;
+    height: 100%;
+    background: linear-gradient(to right,
+            #ff4d4f 0%,
+            #ff4d4f 25%,
+            #faad14 25%,
+            #faad14 50%,
+            #52c41a 50%,
+            #52c41a 75%,
+            #414f51 75%,
+            #414f51 100%);
+}
+  
