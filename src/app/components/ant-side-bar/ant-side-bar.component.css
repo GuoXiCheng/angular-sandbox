@@ -60,6 +60,15 @@
     border: 1px solid rgba(255, 255, 255, 0.2);
     background-color: #203033;
     padding: 0.375rem;
+    opacity: 0.4;
+}
+
+.expand-timeline-btn:hover {
+    opacity: 1;
+}
+
+.expand-timeline-btn-active {
+    opacity: 1;
 }
 
 .expand-timeline-date-container {
@@ -91,4 +100,26 @@
             #414f51 75%,
             #414f51 100%);
 }
-  
+
+.fold-timeline-btn {
+    background-color: #203033;
+    padding: 0.3125rem 0.25rem;
+    width: 4rem;
+    color: white;
+    border-radius: 0.5rem;
+    opacity: 0.4;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fold-timeline-btn:hover {
+    opacity: 1 !important;
+    background-color: #4d595c !important;
+}
+
+.fold-timeline-btn-active {
+    opacity: 1 !important;
+    background-color: #4d595c !important;
+}

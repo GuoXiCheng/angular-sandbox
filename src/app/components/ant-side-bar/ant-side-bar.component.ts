@@ -1,31 +1,31 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
-import dayjs from 'dayjs';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import dayjs, { Dayjs } from 'dayjs';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzBadgeModule } from 'ng-zorro-antd/badge';
+
+export interface TimeLine {
+  date: string;
+  exceptionNum: number;
+}
 @Component({
   selector: 'app-ant-side-bar',
   templateUrl: './ant-side-bar.component.html',
   styleUrls: ['./ant-side-bar.component.css'],
   standalone: true,
-  imports: [CommonModule, NzButtonModule, NzIconModule]
+  imports: [CommonModule, NzButtonModule, NzIconModule, NzBadgeModule]
 })
 export class AntSideBarComponent implements OnInit {
 
   @Input() isExpand = true;
+  @Input() dataset: TimeLine[] = [];
+  @Output() upEvent = new EventEmitter<Dayjs>();
+  @Output() downEvent = new EventEmitter<Dayjs>();
 
   currentDate = dayjs();
   today = dayjs();
-
-  dataset = [
-    {date: '2023-08-29', exceptionNum: 10},
-    {date: '2023-08-30', exceptionNum: 99},
-    {date: '2023-08-31', exceptionNum: 156},
-    {date: '2023-09-01', exceptionNum: 12365},
-    {date: '2023-09-02', exceptionNum: 489},
-    {date: '2023-09-03', exceptionNum: 0},
-    {date: '2023-09-04', exceptionNum: 1},
-  ]
+  selectedDate = dayjs().format("YYYY-MM-DD")
 
   constructor() { }
 
@@ -33,22 +33,21 @@ export class AntSideBarComponent implements OnInit {
   }
 
   clickUpBtn() {
-    this.currentDate = this.currentDate.subtract(7, 'day'); 
-    const result = Array.from({ length: 7 }, (_, index) => index + 1).map((item)=>({
-      date: this.currentDate.clone().subtract(item - 1, 'day').format('YYYY-MM-DD'),
-      exceptionNum: Math.floor(Math.random() * 100)
-    }));
-    this.dataset = result.reverse();
+    this.currentDate = this.currentDate.subtract(7, 'day');
+    this.upEvent.emit(this.currentDate);
+    // this.selectedDate = this.dataset[this.dataset.length-1].date;
   }
 
   clickDownBtn() {
     if (this.currentDate.format('YYYY-MM-DD') === this.today.format('YYYY-MM-DD')) return;
     this.currentDate = this.currentDate.add(7, 'day');
-    const result = Array.from({ length: 7 }, (_, index) => index + 1).map((item)=>({
-      date: this.currentDate.clone().subtract(item - 1, 'day').format('YYYY-MM-DD'),
-      exceptionNum: Math.floor(Math.random() * 100)
-    }));
-    this.dataset = result.reverse();
+    this.downEvent.emit(this.currentDate);
+    // this.selectedDate = this.dataset[this.dataset.length-1].date;
+  }
+
+  clickTimeLineBtn(date: string) {
+    console.log(date)
+    this.selectedDate = date;
   }
 
 }

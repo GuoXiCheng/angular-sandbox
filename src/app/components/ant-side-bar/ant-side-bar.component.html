@@ -1,5 +1,10 @@
 <div class="container" [ngStyle]="{ width: isExpand ? '16.5rem' : '4.5rem' }">
-  <button nz-button nzType="default" class="default-button up-button" (click)="clickUpBtn()">
+  <button
+    nz-button
+    nzType="default"
+    class="default-button up-button"
+    (click)="clickUpBtn()"
+  >
     <span
       nz-icon
       nzType="up"
@@ -14,10 +19,20 @@
           *ngTemplateOutlet="expandTimeLineBtn; context: item"
         ></ng-container>
       </ng-container>
+      <ng-container *ngIf="!isExpand">
+        <ng-container
+          *ngTemplateOutlet="foldTimeLineBtn; context: item"
+        ></ng-container>
+      </ng-container>
       <div *ngIf="i !== dataset.length - 1" style="color: #414f51">|</div>
     </ng-container>
   </div>
-  <button nz-button nzType="default" class="default-button down-button" (click)="clickDownBtn()">
+  <button
+    nz-button
+    nzType="default"
+    class="default-button down-button"
+    (click)="clickDownBtn()"
+  >
     <span
       nz-icon
       nzType="down"
@@ -46,11 +61,36 @@
 </div>
 
 <ng-template #expandTimeLineBtn let-date="date" let-exceptionNum="exceptionNum">
-  <button nz-button nzType="default" class="expand-timeline-btn">
+  <button
+    nz-button
+    nzType="default"
+    class="expand-timeline-btn"
+    (click)="clickTimeLineBtn(date)"
+    [ngClass]="{ 'expand-timeline-btn-active': selectedDate === date }"
+  >
     <div class="expand-timeline-date-container">
       <div style="color: #ffffff">{{ date }}</div>
       <div style="color: red">{{ exceptionNum }}</div>
     </div>
     <div class="expand-timeline-btn-content"></div>
   </button>
+</ng-template>
+
+<ng-template #foldTimeLineBtn let-date="date" let-exceptionNum="exceptionNum">
+  <nz-badge
+    [nzCount]="exceptionNum"
+    [nzShowZero]="true"
+    nzSize="small"
+    [nzOffset]="[-15, 0]"
+  >
+    <button
+      nz-button
+      nzType="default"
+      class="fold-timeline-btn"
+      (click)="clickTimeLineBtn(date)"
+      [ngClass]="{ 'fold-timeline-btn-active': selectedDate === date }"
+    >
+      {{ date.slice(5) }}
+    </button>
+  </nz-badge>
 </ng-template>
