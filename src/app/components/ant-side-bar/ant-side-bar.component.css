@@ -90,7 +90,7 @@
 .expand-timeline-btn-content {
     width: 15rem;
     height: 100%;
-    background: linear-gradient(to right,
+    /* background: linear-gradient(to right,
             #ff4d4f 0%,
             #ff4d4f 25%,
             #faad14 25%,
@@ -98,7 +98,7 @@
             #52c41a 50%,
             #52c41a 75%,
             #414f51 75%,
-            #414f51 100%);
+            #414f51 100%); */
 }
 
 .fold-timeline-btn {

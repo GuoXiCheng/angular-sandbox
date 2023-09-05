@@ -60,7 +60,7 @@
   </button>
 </div>
 
-<ng-template #expandTimeLineBtn let-date="date" let-exceptionNum="exceptionNum">
+<ng-template #expandTimeLineBtn let-date="date" let-openNum="openNum" let-color="color">
   <button
     nz-button
     nzType="default"
@@ -70,15 +70,20 @@
   >
     <div class="expand-timeline-date-container">
       <div style="color: #ffffff">{{ date }}</div>
-      <div style="color: red">{{ exceptionNum }}</div>
+      <div style="color: #ffffff">{{ openNum }}</div>
     </div>
-    <div class="expand-timeline-btn-content"></div>
+    <div
+      class="expand-timeline-btn-content"
+      [style.background]="
+        'linear-gradient(to right, ' + color+ ')'
+      "
+    ></div>
   </button>
 </ng-template>
 
-<ng-template #foldTimeLineBtn let-date="date" let-exceptionNum="exceptionNum">
+<ng-template #foldTimeLineBtn let-date="date" let-openNum="openNum">
   <nz-badge
-    [nzCount]="exceptionNum"
+    [nzCount]="openNum"
     [nzShowZero]="true"
     nzSize="small"
     [nzOffset]="[-15, 0]"

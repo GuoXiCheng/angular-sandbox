@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import dayjs, { Dayjs } from 'dayjs';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzIconModule } from 'ng-zorro-antd/icon';
@@ -7,7 +7,9 @@ import { NzBadgeModule } from 'ng-zorro-antd/badge';
 
 export interface TimeLine {
   date: string;
-  exceptionNum: number;
+  openNum: number;
+  closedNum: number;
+  color?: string;
 }
 @Component({
   selector: 'app-ant-side-bar',
@@ -16,7 +18,7 @@ export interface TimeLine {
   standalone: true,
   imports: [CommonModule, NzButtonModule, NzIconModule, NzBadgeModule]
 })
-export class AntSideBarComponent implements OnInit {
+export class AntSideBarComponent implements OnInit, OnChanges {
 
   @Input() isExpand = true;
   @Input() dataset: TimeLine[] = [];
@@ -32,22 +34,48 @@ export class AntSideBarComponent implements OnInit {
   ngOnInit() {
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['dataset'] && Array.isArray(changes['dataset'].currentValue)) {
+      this.dataset = this.dataset.map((item) => ({ ...item, color: this.getBackgroundColor(item.openNum, item.closedNum) }))
+    }
+  }
+
   clickUpBtn() {
     this.currentDate = this.currentDate.subtract(7, 'day');
     this.upEvent.emit(this.currentDate);
-    // this.selectedDate = this.dataset[this.dataset.length-1].date;
   }
 
   clickDownBtn() {
     if (this.currentDate.format('YYYY-MM-DD') === this.today.format('YYYY-MM-DD')) return;
     this.currentDate = this.currentDate.add(7, 'day');
     this.downEvent.emit(this.currentDate);
-    // this.selectedDate = this.dataset[this.dataset.length-1].date;
   }
 
   clickTimeLineBtn(date: string) {
     console.log(date)
     this.selectedDate = date;
+  }
+
+  getBackgroundColor(openNum = 0, closedNum = 0) {
+    const totalNum = openNum + closedNum;
+    if (totalNum === 0) {
+      return `
+				#414f51 0%,
+				#414f51 100%`;
+    } else if (openNum === 0) {
+      return `
+				#52c41a 0%,
+			    #52c41a 100%
+			`;
+    } else {
+      const proportion = Math.round((openNum / totalNum) * 100);
+      return `
+			    #ff4d4f 0%,
+				#ff4d4f ${proportion}%,
+				#52c41a ${proportion}%,
+				#52c41a 100%
+			`;
+    }
   }
 
 }
