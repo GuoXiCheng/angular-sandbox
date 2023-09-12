@@ -57,7 +57,6 @@ export class ThirdPageComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.isVisible = true;
   }
 
   clickModalBtn() {

@@ -4,8 +4,12 @@
     "second-page": "Second Page",
     "third-page": "Third Page",
     "fourth-page": "Fourth Page",
-    "fifth-page": "Fifth Page",
-    "sixth-page": "Sixth Page",
+    "sidebar": "Side Bar",
+    "modal": "Modal",
     "seventh-page": "Seventh Page",
-    "table": "Table"
+    "table": "Table",
+    "confirm_to_submit": "Are you sure to submit?",
+    "confirm_to_delete": "Are you sure to delete?",
+    "ok": "OK",
+    "cancel": "Cancel"
 }

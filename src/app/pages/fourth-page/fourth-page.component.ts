@@ -10,7 +10,6 @@ export class FourthPageComponent implements OnInit {
   isVisible = false;
 
   ngOnInit(): void {
-    this.isVisible = true;
   }
 
   clickOpenModal() {
