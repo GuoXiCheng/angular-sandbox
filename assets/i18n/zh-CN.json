@@ -4,8 +4,12 @@
     "second-page": "第二页",
     "third-page": "第三页",
     "fourth-page": "第四页",
-    "fifth-page": "第五页",
-    "sixth-page": "第六页",
+    "sidebar": "侧边栏",
+    "modal": "对话框",
     "seventh-page": "第七页",
-    "table": "表格"
+    "table": "表格",
+    "confirm_to_submit": "确认提交吗？",
+    "confirm_to_delete": "确认删除吗？",
+    "ok": "确认",
+    "cancel": "取消"
 }
