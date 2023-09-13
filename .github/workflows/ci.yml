@@ -32,7 +32,10 @@ jobs:
       #      sudo dpkg -i google-chrome-stable_current_amd64.deb
 
       - name: Run tests
-        run: export DISPLAY=$HOST_IP:10.0 && chromium && npm run test
+        run: |
+          apt-get install xvfb x11-apps x11-xkb-utils libx11-6 libx11-xcb1
+          Xvfb -ac :99 -screen 0 1280x1024x16 & export DISPLAY=:99
+          npm run test
 
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v3
