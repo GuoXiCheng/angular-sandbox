@@ -33,8 +33,7 @@ jobs:
 
       - name: Run tests
         run: |
-          apt-get install xvfb x11-apps x11-xkb-utils libx11-6 libx11-xcb1
-          Xvfb -ac :99 -screen 0 1280x1024x16 & export DISPLAY=:99
+          export DISPLAY=$HOST_IP:10.0
           npm run test
 
       - name: Upload coverage reports to Codecov
