@@ -26,13 +26,13 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Install Chrome
-        run: |
-           wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-           sudo dpkg -i google-chrome-stable_current_amd64.deb
+      # - name: Install Chrome
+      #   run: |
+      #      wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+      #      sudo dpkg -i google-chrome-stable_current_amd64.deb
 
       - name: Run tests
-        run: npm run test:ci
+        run: npm run test
 
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v3
