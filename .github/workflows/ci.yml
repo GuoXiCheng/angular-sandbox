@@ -33,7 +33,7 @@ jobs:
 
       - name: Run tests
         run: |
-          export DISPLAY=$HOST_IP:10.0
+          export DISPLAY=$HOST_IP:10.0 && /usr/bin/google-chrome
           npm run test
 
       - name: Upload coverage reports to Codecov
