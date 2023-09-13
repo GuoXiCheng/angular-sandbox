@@ -9,6 +9,7 @@ jobs:
   build-and-deploy:
     name: Build and Deploy
     runs-on: ubuntu-latest
+    timeout-minutes: 5
 
     steps:
       - name: Checkout repository
@@ -25,6 +26,11 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Install Chrome
+        run: |
+           wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+           sudo dpkg -i google-chrome-stable_current_amd64.deb
+           
       - name: Run tests
         run: npm run test
 
