@@ -31,6 +31,16 @@ jobs:
         with:
           run: ng test --no-watch --no-progress --code-coverage
 
+      - name: Check if coverage folder exists
+        run: |
+          if [ -d "coverage" ]; then
+            echo "Coverage folder exists."
+          else
+            echo "Coverage folder does not exist."
+            exit 1  
+          fi
+
+
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v3
         env:
