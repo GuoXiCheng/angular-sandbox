@@ -32,7 +32,9 @@ jobs:
       #      sudo dpkg -i google-chrome-stable_current_amd64.deb
 
       - name: Run tests
-        run: npm run test
+        uses: GabrielBB/xvfb-action@v1.4
+        with:
+          run: npm run test
 
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v3
