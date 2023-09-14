@@ -27,19 +27,9 @@ jobs:
         run: npm install
 
       - name: Run tests
-        uses: GabrielBB/xvfb-action@v1.4
-        with:
-          run: ng test --no-watch --no-progress --code-coverage
-
-      - name: Check if coverage folder exists
-        run: |
-          if [ -d "coverage" ]; then
-            echo "Coverage folder exists."
-          else
-            echo "Coverage folder does not exist."
-            exit 1  
-          fi
-
+        # uses: GabrielBB/xvfb-action@v1.4
+        # with:
+        run: ng test --no-watch --no-progress --code-coverage
 
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v3
