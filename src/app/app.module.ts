@@ -18,7 +18,6 @@ import { SecondPageComponent } from './pages/second-page/second-page.component';
 import { FirstPageComponent } from './pages/first-page/first-page.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { NotificationRuleDialogComponent } from './components/notification-rule-dialog/notification-rule-dialog.component';
 import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { zh_CN } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
@@ -57,6 +56,9 @@ registerLocaleData(zh);
         deps: [HttpClient]
       }
     }),
+    StoreModule.forRoot({
+      count: counterReducer
+    }),
 
     NzMenuModule,
     BrowserModule,
@@ -82,13 +84,14 @@ registerLocaleData(zh);
     ForestGreenTableComponent,
     ForestGreenDialogComponent,
     InputFieldGroupComponent,
-    NotificationRuleDialogComponent,
 
     AntNotificationRuleModalComponent,
     AntNotificationModeModalComponent,
     AntNotificationRuleTableComponent,
     AntTableComponent,
-    AntSideBarComponent
+    AntSideBarComponent,
+
+    MyCounterComponent
   ],
   providers: [
   
@@ -103,6 +106,9 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { AntTableComponent } from './components/ant-table/ant-table.component';
 import { AntSideBarComponent } from './components/ant-side-bar/ant-side-bar.component';
+import { StoreModule } from '@ngrx/store';
+import { counterReducer } from './reducers/counter.reducer';
+import { MyCounterComponent } from './components/my-counter/my-counter.component';
 // https://github.com/ngx-translate/core
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
