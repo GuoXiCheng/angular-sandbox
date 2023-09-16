@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatButtonModule} from '@angular/material/button';
@@ -37,6 +37,8 @@ import { AntNotificationRuleTableComponent } from './components/ant-notification
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 
 registerLocaleData(zh);
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,8 +59,17 @@ registerLocaleData(zh);
       }
     }),
     StoreModule.forRoot({
-      count: counterReducer
+      count: counterReducer,
+      foodheat: foodHeatReducer
     }),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+      logOnly: !isDevMode(), // Restrict extension to log-only mode
+      autoPause: true, // Pauses recording actions and state changes when the extension window is not open
+      trace: false, //  If set to true, will include stack trace for every dispatched action, so you can see it in trace tab jumping directly to that part of code
+      traceLimit: 75, // maximum stack trace frames to be stored (in case trace option was provided as true)
+    }),
+    EffectsModule.forRoot([FoodHeatEffects]),
 
     NzMenuModule,
     BrowserModule,
@@ -109,6 +120,10 @@ import { AntSideBarComponent } from './components/ant-side-bar/ant-side-bar.comp
 import { StoreModule } from '@ngrx/store';
 import { counterReducer } from './reducers/counter.reducer';
 import { MyCounterComponent } from './components/my-counter/my-counter.component';
+import { EffectsModule } from '@ngrx/effects';
+import { FoodHeatEffects } from './effects/foodheat.effect';
+import { foodHeatReducer } from './reducers/foodheat.reducer';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 // https://github.com/ngx-translate/core
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
