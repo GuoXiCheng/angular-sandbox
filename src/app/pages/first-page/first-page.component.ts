@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { TableItem } from 'src/app/components/ant-table/ant-table.component';
-import { ApiService } from 'src/app/services/api.service';
+import { Store } from '@ngrx/store';
+import { searchFoodHeatAction } from 'src/app/actions/foodheat.action';
+import { FoodHeatState } from 'src/app/reducers/foodheat.reducer';
 
 @Component({
   selector: 'app-first-page',
@@ -9,16 +10,14 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class FirstPageComponent implements OnInit {
 
-  constructor(private apiService: ApiService) { }
+  foodheat$ = this.store.select('foodheat');
 
-  ngOnInit() {
-    this.apiService.searchFoodHeat("西瓜").then(result => {
-      this.database = result.filter(item => item.name !== null);
-    });
+  constructor(private store: Store<{foodheat: FoodHeatState}>) { 
+    
   }
 
-  /** app-ant-table */
-  database: TableItem[] = []
-  /** app-ant-table */
+  ngOnInit() {
+    this.store.dispatch(searchFoodHeatAction({params: '草莓', item: []}));
+  }
 
 }

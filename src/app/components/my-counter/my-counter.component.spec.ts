@@ -3,21 +3,21 @@
 // import { By } from '@angular/platform-browser';
 // import { DebugElement } from '@angular/core';
 
-// import { NotificationRuleDialogComponent } from './notification-rule-dialog.component';
+// import { MyCounterComponent } from './my-counter.component';
 
-// describe('NotificationRuleDialogComponent', () => {
-//   let component: NotificationRuleDialogComponent;
-//   let fixture: ComponentFixture<NotificationRuleDialogComponent>;
+// describe('MyCounterComponent', () => {
+//   let component: MyCounterComponent;
+//   let fixture: ComponentFixture<MyCounterComponent>;
 
 //   beforeEach(async(() => {
 //     TestBed.configureTestingModule({
-//       declarations: [ NotificationRuleDialogComponent ]
+//       declarations: [ MyCounterComponent ]
 //     })
 //     .compileComponents();
 //   }));
 
 //   beforeEach(() => {
-//     fixture = TestBed.createComponent(NotificationRuleDialogComponent);
+//     fixture = TestBed.createComponent(MyCounterComponent);
 //     component = fixture.componentInstance;
 //     fixture.detectChanges();
 //   });
