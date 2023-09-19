@@ -11,5 +11,6 @@
     "confirm_to_submit": "Are you sure to submit?",
     "confirm_to_delete": "Are you sure to delete?",
     "ok": "OK",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "toolbar": "Tool Bar"
 }
