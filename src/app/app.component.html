@@ -65,6 +65,11 @@
                 routerLinkActive="active" ariaCurrentWhenActive="page">
                 {{ 'seventh-page' | translate}}
             </a>
+
+            <a class="route-link" [ngClass]="isDarkTheme ? 'dark-a': 'light-a'" routerLink="/eighth"
+                routerLinkActive="active" ariaCurrentWhenActive="page">
+                {{ 'toolbar' | translate}}
+            </a>
         </div>
 
     </mat-sidenav>

@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="content-left">
+    <span
+      nz-icon
+      nzType="menu"
+      style="cursor: pointer"
+      nzTheme="outline"
+    ></span>
+    <img
+      src="xxx"
+      style="width: 7.875rem; height: 1.5rem"
+      [hidden]="isMobile"
+    />
+    <nz-divider nzType="vertical" nzPlain [hidden]="isMobile"></nz-divider>
+    <span [hidden]="isMobile">angular sandbox system</span>
+  </div>
+  <div class="content-right">
+    <span
+      nz-icon
+      nzType="setting"
+      nzTheme="outline"
+      style="font-size: 1.5rem; cursor: pointer"
+      nz-dropdown
+      [nzDropdownMenu]="drawerMenu"
+      nzTrigger="click"
+    ></span>
+    <nz-dropdown-menu #drawerMenu="nzDropdownMenu">
+      <ul nz-menu>
+        <li nz-menu-item>Item 1</li>
+        <li nz-menu-item>Item 2</li>
+        <li nz-menu-item>Item 3</li>
+        <li
+          nz-submenu
+          nzTitle="{{ selectedGroup }}"
+          [hidden]="selectedGroup == null"
+        >
+          <ul>
+            <ng-container *ngFor="let item of groupMenuList">
+              <li nz-menu-item (click)="clickGroupItem(item)">{{ item }}</li>
+            </ng-container>
+          </ul>
+        </li>
+        <li nz-submenu nzTitle="{{ selectedLanguage }}">
+          <ul>
+            <ng-container *ngFor="let item of languageMenuList">
+              <li nz-menu-item (click)="clickLanguageItem(item)">{{ item }}</li>
+            </ng-container>
+          </ul>
+        </li>
+      </ul>
+    </nz-dropdown-menu>
+    <nz-divider nzType="vertical" nzPlain [hidden]="isMobile"></nz-divider>
+    <nz-avatar [nzText]="'T'" [hidden]="isMobile"></nz-avatar>
+    <span [hidden]="isMobile">Test</span>
+  </div>
+</div>
