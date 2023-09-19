@@ -48,7 +48,8 @@ registerLocaleData(zh);
     FourthPageComponent,
     FifthPageComponent,
     SixthPageComponent,
-    SeventhPageComponent
+    SeventhPageComponent,
+    EighthPageComponent
   ],
   imports: [
     TranslateModule.forRoot({
@@ -101,6 +102,7 @@ registerLocaleData(zh);
     AntNotificationRuleTableComponent,
     AntTableComponent,
     AntSideBarComponent,
+    AntToolbarComponent,
 
     MyCounterComponent
   ],
@@ -124,6 +126,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { FoodHeatEffects } from './effects/foodheat.effect';
 import { foodHeatReducer } from './reducers/foodheat.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EighthPageComponent } from './pages/eighth-page/eighth-page.component';
+import { AntToolbarComponent } from './components/ant-toolbar/ant-toolbar.component';
 // https://github.com/ngx-translate/core
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
