@@ -27,7 +27,7 @@
     "@ngx-translate/http-loader": "^8.0.0",
     "axios": "^1.4.0",
     "dayjs": "^1.11.9",
-    "ng-zorro-antd": "^16.1.0",
+    "ng-zorro-antd": "^16.2.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"
