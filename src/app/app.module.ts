@@ -104,7 +104,13 @@ registerLocaleData(zh);
     AntSideBarComponent,
     AntToolbarComponent,
 
-    MyCounterComponent
+    MyCounterComponent,
+      ServiceWorkerModule.register('ngsw-worker.js', {
+        enabled: !isDevMode(),
+        // Register the ServiceWorker as soon as the application is stable
+        // or after 30 seconds (whichever comes first).
+        registrationStrategy: 'registerWhenStable:30000'
+      })
   ],
   providers: [
   
@@ -128,6 +134,7 @@ import { foodHeatReducer } from './reducers/foodheat.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EighthPageComponent } from './pages/eighth-page/eighth-page.component';
 import { AntToolbarComponent } from './components/ant-toolbar/ant-toolbar.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
 // https://github.com/ngx-translate/core
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
